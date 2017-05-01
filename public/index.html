@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title>Hey-Joe</title>
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+    <link type="text/css" rel="stylesheet" href="css/reset.css"  />
+    <link type="text/css" rel="stylesheet" href="css/style.css"  />
+</head>
+<body>
+
+    <div class="image">
+        <div class="stable"></div>
+        <div class="unstable"></div>
+        <div class="dangerous"></div>
+        <div class="error"></div>
+    </div>
+
+    <section class="header">
+      <img class="logo" src="img/logo-128.png" />
+    </section>
+
+      <!-- http://stackoverflow.com/questions/14975104/jquery-fading-two-images-without-white
+      <div class="image">
+        <img src="img/stable.png" />
+        <img src="img/unstable.png" />
+        <img src="img/dangerous.png" />
+        <img src="img/error.png" />
+      </div>
+    </section>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><a href="!#" id="link">link</a>
+    -->
+
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><a href="!#" id="link">link</a>
+
+
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/business.js"></script>
+    <script type="text/javascript">
+
+      var c = 0,
+        $img = $('.image div'),
+        n = $img.length;
+
+        console.log($img);
+
+        $img.eq(c).show();
+
+        $("#link").click(function(){
+          console.log('entrei');
+          $img.delay(1000).fadeOut(800).eq(++c%n).fadeIn(800);
+          return false;
+        });
+
+      /*
+      var c = 0,
+        $img = $('.image img'),
+        n = $img.length;
+
+        $img.eq(c).show();
+
+        $("#link").click(function(){
+          $img.delay(1000).fadeOut(800).eq(++c%n).fadeIn(800);
+          return false;
+        });
+        */
+
+    </script>
+</body>
+</html>
