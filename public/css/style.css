@@ -1,34 +1,4 @@
-/*
-body {
-    background-color: #1e88e5;
-    background-image: url(../img/stable.png);
-    background-repeat: repeat;
-    background-size: auto;
-}
-*/
-
-section.header img.logo {
-    position:absolute;
-    left: 10px;
-    top: 10px;
-    z-index: 1;
-}
-
-/*
-section.header .image{
-    position:relative;
-    z-index: -1;
-}
-section.header .image img{
-    position:absolute;
-    top:0px;
-    display:none;
-
-    width: 100%;
-    height: auto;
-}
-*/
-
+/* Background */
 div.image{
     width: 100%;
     height: 100%;
@@ -66,4 +36,50 @@ div.image div.dangerous{
 div.image div.error{
     background-color: #d84315;
     background-image: url(../img/error.png);
+}
+
+/* Header */
+section.header {
+    font-size: 40px;
+    font-weight: bold;
+    color: #424242;
+}
+
+section.header img.logo {
+    position:absolute;
+    left: 10px;
+    top: 10px;
+}
+
+section.header div.status {
+    position:absolute;
+    right: 10px;
+    top: 10px;
+    width: 250px;
+
+    display: block;
+    background-color: rgba(200,200,200,0.5);
+    padding: 2px 5px 2px 5px;
+}
+
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
 }
