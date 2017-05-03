@@ -18,6 +18,12 @@ div.image div{
     background-size: auto;
 }
 
+div.image div.loading{
+    background-color: #616161;
+    background-image: url(../img/loading.png);
+    display:block;
+}
+
 div.image div.stable{
     background-color: #1e88e5;
     background-image: url(../img/stable.png);
@@ -40,7 +46,7 @@ div.image div.error{
 
 /* Header */
 section.header {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: bold;
     color: #424242;
 }
@@ -82,4 +88,209 @@ section.header div.status {
     0% { opacity:1; }
     50% { opacity:0; }
     100% { opacity:1; }
+}
+
+/* Boxes */
+section.boxes {
+    margin: 10px;
+    margin-top: 120px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color: #F8FFE3;
+}
+
+section.boxes ul.box {
+    list-style-type: none;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+section.boxes ul.box li {
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+
+    background: #090909; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#090909, #313131); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#090909, #313131); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#090909, #313131); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#090909, #313131); /* Standard syntax */
+
+    width: 320px;
+    height: 140px;
+    display: block;
+
+    padding: 10px;
+}
+
+section.boxes ul.box li div.title {
+    font-size: 16px;
+    font-weight: bold;
+    float: left;
+    display: block;
+    width: 270px;
+    height: 25px;
+    text-align: left;
+    line-height: 25px;
+}
+
+section.boxes ul.box div.status {
+    display: block;
+    width: 25px;
+    height: 25px;
+    float: right;
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+section.boxes ul.box div.status div.loading {
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-image: url(../img/status.png);
+    background-position: 0px;
+}
+
+section.boxes ul.box div.status div.stable {
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-image: url(../img/status.png);
+    background-position: -25px;
+}
+
+section.boxes ul.box div.status div.unstable {
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-image: url(../img/status.png);
+    background-position: -50px;
+}
+
+section.boxes ul.box div.status div.dangerous {
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-image: url(../img/status.png);
+    background-position: -75px;
+}
+
+section.boxes ul.box div.status div.error {
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-image: url(../img/status.png);
+    background-position: -100px;
+}
+
+section.boxes ul.box div.hr {
+    display: block;
+    height: 4px;
+    clear: both;
+    margin-top: 28px;
+}
+
+section.boxes ul.box li hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(63, 63, 63, 0), rgba(63, 63, 63, 1), rgba(63, 63, 63, 0));
+    display: block;
+}
+
+section.boxes ul.box div.icons {
+    padding-top: 7px;
+    display: block;
+
+    width: 100px;
+    height: 100px;
+
+    font-size: 16px;
+    font-weight: none;
+    text-align: center;
+    float: left;
+}
+
+section.boxes ul.box div.icons div.concurrentUsers {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+
+    background-image: url(../img/icons.png);
+    background-repeat: no-repeat;
+}
+
+section.boxes ul.box div.icons div.cpuCore {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+
+    background-image: url(../img/icons.png);
+    background-repeat: no-repeat;
+    background-position: -64px;
+}
+
+section.boxes ul.box div.graph {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    margin-top: 7px;
+    float: left;
+    width: 205px;
+    height: 100px;
+    display: block;
+}
+
+.ct-series-a .ct-bar, .ct-series-a .ct-line, .ct-series-a .ct-point, .ct-series-a .ct-slice-donut {
+    stroke: #F8FFE3;
+    stroke-width: 2px;
+}
+
+.ct-series-b .ct-bar, .ct-series-b .ct-line, .ct-series-b .ct-point, .ct-series-b .ct-slice-donut {
+    stroke: rgba(255,255,255,0.2);
+}
+
+.ct-grids line {
+  stroke: #c8cfc3;
+}
+
+.ct-labels span {
+  color: #c8cfc3;
+}
+
+.ct-series-a .ct-area {
+    fill:#F8FFE3;
+}
+
+
+@media screen and (max-width: 800px) {
+    section.header {
+        font-size: 24px;
+    }
+
+    section.header img.logo {
+        width: 100px;
+        height: auto;
+    }
+
+    section.header div.status {
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    section.header {
+        font-size: 18px;
+    }
+
+    section.header img.logo {
+        width: 64px;
+        height: auto;
+    }
+
+    section.header div.status {
+        width: 150px;
+    }
 }

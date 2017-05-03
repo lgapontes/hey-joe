@@ -7,12 +7,14 @@
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
     <link type="text/css" rel="stylesheet" href="css/reset.css"  />
+    <link rel="stylesheet" href="css/chartist.min.css">
     <link type="text/css" rel="stylesheet" href="css/style.css"  />
 </head>
 <body>
 
     <!-- Background -->
     <div class="image">
+        <div class="loading"></div>
         <div class="stable"></div>
         <div class="unstable"></div>
         <div class="dangerous"></div>
@@ -22,41 +24,45 @@
     <!-- Header -->
     <section class="header">
       <img class="logo" src="img/logo-128.png" />
-      <div class="status">> <span id="status">stable</span></div>
+      <div class="status">> <span id="status"></span></div>
     </section>
 
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><a href="!#" id="link">link</a>
+    <a href="!#" id="link">link</a>
 
+    <!-- Boxes -->
+    <section class="boxes">
+      <ul class="box">
+        <!-- Box -->
+        <li>
+            <div class="title">Concurrent Users</div>
+            <div class="status"><div class="stable"></div></div>
+            <div class="hr"><hr /></div>
+            <div class="icons">
+              <div class="concurrentUsers"></div>
+              <br />
+              <span id="concurrentUsers">233</span>
+            </div>
+            <div id="concurrentUsersGraph" class="graph ct-chart ct-perfect-fourth"></div>
+        </li>
+
+        <!-- Box -->
+        <li>
+            <div class="title">CPU Core 1</div>
+            <div class="status"><div class="unstable"></div></div>
+            <div class="hr"><hr /></div>
+            <div class="icons">
+              <div class="cpuCore"></div>
+              <br />
+              <span id="cpuCore1">23%</span>
+            </div>
+            <div id="cpuCore1Graph" class="graph ct-chart ct-perfect-fourth"></div>
+        </li>
+      </ul>
+    </section>
 
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/typed.js"></script>
-    <script type="text/javascript" src="js/business.js"></script>
-    <script type="text/javascript">
-
-
-      $( document ).ready(function() {
-        Typed.new('#status', {
-          strings: ["stable"],
-          typeSpeed: 100
-        });
-      });
-
-      var c = 0,
-        $img = $('.image div'),
-        n = $img.length;
-
-        $img.eq(c).show();
-
-        $("#link").click(function(){
-          $img.delay(1000).fadeOut(800).eq(++c%n).fadeIn(800,function(){
-            Typed.new('#status', {
-              strings: [$img.eq(c%n).attr("class")],
-              typeSpeed: 100
-            });
-          });
-          return false;
-        });
-
-    </script>
+    <script src="js/chartist.min.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
 </body>
 </html>
