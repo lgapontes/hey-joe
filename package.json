@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/lgapontes/hey-joe#readme",
   "dependencies": {
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "lowdb": "^0.16.2",
+    "os-utils": "0.0.14"
   }
 }

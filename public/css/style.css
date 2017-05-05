@@ -109,18 +109,23 @@ section.boxes ul.box li {
     float: left;
     margin-left: 10px;
     margin-top: 10px;
-
-    background: #090909; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(#090909, #313131); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#090909, #313131); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#090909, #313131); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#090909, #313131); /* Standard syntax */
+    background-color: #231F20;
 
     width: 320px;
     height: 140px;
     display: block;
 
     padding: 10px;
+}
+
+section.boxes ul.box li.done {
+    background-color: #231F20;
+}
+
+section.boxes ul.box li.loading {
+    background-image: url(../img/loading-boxes.gif);
+    background-size: 340px;
+    background-position: left -70px;
 }
 
 section.boxes ul.box li div.title {
@@ -264,6 +269,15 @@ section.boxes ul.box div.graph {
     fill:#F8FFE3;
 }
 
+/* Loading Monitoring Variables */
+
+#cpuCore div.icons div {
+    display: none;
+}
+
+#cpuCore div.graph {
+    display: none;
+}
 
 @media screen and (max-width: 800px) {
     section.header {

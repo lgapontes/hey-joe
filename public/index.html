@@ -32,37 +32,40 @@
     <!-- Boxes -->
     <section class="boxes">
       <ul class="box">
+
         <!-- Box -->
-        <li>
+        <li id="concurrentUsers">
             <div class="title">Concurrent Users</div>
             <div class="status"><div class="stable"></div></div>
             <div class="hr"><hr /></div>
-            <div class="icons">
+            <div id="concurrentUsersIcon" class="icons">
               <div class="concurrentUsers"></div>
               <br />
-              <span id="concurrentUsers">233</span>
+              <span id="concurrentUsersValue">233</span>
             </div>
-            <div id="concurrentUsersGraph" class="graph ct-chart ct-perfect-fourth"></div>
+            <div id="concurrentUsersChart" class="graph ct-chart ct-perfect-fourth"></div>
         </li>
 
-        <!-- Box -->
-        <li>
-            <div class="title">CPU Core 1</div>
-            <div class="status"><div class="unstable"></div></div>
+        <!-- Box
+        <li id="cpuCore" class="loading">
+            <div class="title"></div>
+            <div class="status"><div class="loading"></div></div>
             <div class="hr"><hr /></div>
             <div class="icons">
               <div class="cpuCore"></div>
               <br />
-              <span id="cpuCore1">23%</span>
+              <span></span>
             </div>
-            <div id="cpuCore1Graph" class="graph ct-chart ct-perfect-fourth"></div>
-        </li>
+            <div class="graph ct-chart ct-perfect-fourth"></div>
+        </li> -->
+
       </ul>
     </section>
 
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/typed.js"></script>
     <script src="js/chartist.min.js"></script>
+    <script type="text/javascript" src="js/properties.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
 </body>
 </html>

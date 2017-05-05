@@ -31,3 +31,9 @@ app.use(hey-joe);
 * [NodeJS](https://nodejs.org/en/)
 * [Express](https://www.npmjs.com/package/express)
 * [JQuery](https://jquery.com/)
+* [lowdb](https://www.npmjs.com/package/lowdb)
+
+
+### Cool Sites
+* [Many icons for web](https://icomoon.io/)
+* [Compress PNG](http://compresspng.com/)

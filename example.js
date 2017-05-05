@@ -1,9 +1,12 @@
 const express = require('express');
-var app = express();
-app.use(express.static('public'));
+const app = express();
 
 /* Example of use */
-app.use(require('./hey-joe.js'));
+app.use('/hey-joe',require('./hey-joe'));
+
+app.get('/',function(req,res){
+    res.send('ok');
+});
 
 app.listen(8888, function () {
     console.log('Example of Hey-Joe running!');
