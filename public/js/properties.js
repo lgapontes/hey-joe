@@ -4,14 +4,14 @@
 
     exports.config = {
         currentStatus: 'loading',
-        defaultTimeout: 5000,
+        defaultTimeout: 3000,
         errorMessage: 'Could not get this monitoring variable!',
-        millisecondsUpdateTime: 10000,
+        millisecondsUpdateTime: 5000,
         apiVersion: API_VERSION,
         statusMonitoringMethodsUrl: "api/" + API_VERSION + '/status-monitoring-methods',
         monitoringVariables: {
             cpu: {
-                id: "cpuCore",
+                id: "cpu",
                 url: "api/" + API_VERSION + "/cpu",
                 label: "CPU Usage",
                 currentStatus: 'loading',
@@ -36,7 +36,7 @@
                 chartType: 'pie'
             },
             requests: {
-                id: "concurrentRequests",
+                id: "requests",
                 url: "api/" + API_VERSION + "/requests",
                 label: "Concurrent Requests",
                 currentStatus: 'loading',

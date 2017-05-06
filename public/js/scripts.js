@@ -1,7 +1,8 @@
+var monitoringVariables = [];
+
 /* Show Monitoring Variables */
 function showMonitoringVariables() {
-     for(var entry in properties.config.monitoringVariables) {
-          var variable = properties.config.monitoringVariables[entry];
+     monitoringVariables.forEach(function(variable){
           $("section.boxes ul.box").append(
                '<li id="' + variable.id + '" class="loading">' +
                '    <div class="title">' + variable.label + '</div>' +
@@ -15,24 +16,29 @@ function showMonitoringVariables() {
                '    <div class="graph ct-chart ct-perfect-fourth"></div>' +
                '</li>'
           );
-     }
+     });
 };
 
 /* Access server */
 function getMonitoringVariables() {
      var count = 0;
-     for(var entry in properties.config.monitoringVariables) {
-          var variable = properties.config.monitoringVariables[entry];
+     var countCallback = 0;
+
+     monitoringVariables.forEach(function(variable){
+          variable.promise = false;
 
           /* First time */
-          getMonitoringVariable(variable);
-          count++;
+          getMonitoringVariable(variable,function(){
+               countCallback++;
 
-          console.log(count);
-          if (count == getAllProperties(properties.config.monitoringVariables).length) {
-               calcTotalStatus();
-          }
-     }
+               if (count === monitoringVariables.length) {
+                    if (countCallback === count) {
+                         calcTotalStatus();
+                    }
+               }
+          });
+          count++;
+     });
 };
 
 /* Charts*/
@@ -74,6 +80,8 @@ function dataLoaded(id) {
 };
 
 function getMonitoringVariable(variable,callback) {
+     console.log(new Date() + ' :: ' + variable.id);
+
      var id = '#' + variable.id;
      $.get({
          url: variable.url,
@@ -86,6 +94,8 @@ function getMonitoringVariable(variable,callback) {
                $(id + ' div.icons span').text('error');
                variable.chart = undefined;
                $(id + ' div.graph').text(properties.config.errorMessage);
+
+               callback();
          },
          success: function(json) {
                var values = variable.getDataAppropriately(json);
@@ -101,6 +111,8 @@ function getMonitoringVariable(variable,callback) {
                variable.currentStatus = variable.status(variable.value(values));
                $(id + ' div.status div').attr('class',variable.currentStatus);
                $(id + ' div.icons span').text(variable.formatedValue(values));
+
+               callback();
           },
          timeout: properties.config.defaultTimeout
      });
@@ -113,14 +125,19 @@ function getCustomMonitoringMethods(callback) {
                callback();
          },
          success: function(json) {
-               getAllProperties(json).forEach(function(entry){
-                      properties.config.monitoringVariables[entry].status = function(value){
-                         if (value < json[entry].stable) return "stable";
-                         else if (value < json[entry].unstable) return "unstable";
+               var count = 0;
+               monitoringVariables.forEach(function(entry){
+                      entry.status = function(value){
+                         if (value < json[entry.id].stable) return "stable";
+                         else if (value < json[entry.id].unstable) return "unstable";
                          else return "dangerous";
                       };
+                      count++;
+
+                      if (count === monitoringVariables.length) {
+                         callback();
+                      }
                });
-               callback();
           },
          timeout: properties.config.defaultTimeout
      });
@@ -128,6 +145,9 @@ function getCustomMonitoringMethods(callback) {
 
 /* Document ready */
 $( document ).ready(function() {
+     getAllProperties(properties.config.monitoringVariables).forEach(function(entry){
+          monitoringVariables.push(properties.config.monitoringVariables[entry]);
+     });
      typeStatus(properties.config.currentStatus);
      getCustomMonitoringMethods(function(){
           showMonitoringVariables();
@@ -138,149 +158,3 @@ $( document ).ready(function() {
           setInterval(function(){ getMonitoringVariables(); }, properties.config.millisecondsUpdateTime);
      });
 });
-
-/* Rules to change background */
-var c = 0,
-     $img = $('.image div'),
-     n = $img.length;
-
-$("#link").click(function(){
-     $img.delay(1000).fadeOut(800).eq(++c%n).fadeIn(800,function(){
-          typeStatus($img.eq(c%n).attr("class"));
-     });
-     return false;
-});
-
-/* Utils */
-var possibleStatus = [
-       "loading",
-       "stable",
-       "unstable",
-       "dangerous",
-       "error"
-];
-var possibleStatusValues = [
-       -1,
-       0,
-       1,
-       2,
-       3
-];
-
-function getIndexStatus(status,callback) {
-     var i = 0;
-     possibleStatus.forEach(function(entry){
-          if (entry === status) {
-               callback(i);
-          }
-          i++
-     });
-};
-
-function calcTotalStatus() {
-     var worseStatusIndex = 0;
-     var count = 0;
-     for(var entry in properties.config.monitoringVariables) {
-          getIndexStatus(properties.config.monitoringVariables[entry].currentStatus,function(currentStatusIndex){
-               if (possibleStatusValues[currentStatusIndex] > possibleStatusValues[worseStatusIndex]) {
-                    worseStatusIndex = currentStatusIndex;
-               }
-          });
-          count++;
-
-          if (getAllProperties(properties.config.monitoringVariables).length === count) {
-               /* Change it */
-               if (properties.config.currentStatus != possibleStatus[worseStatusIndex]) {
-                    properties.config.currentStatus = possibleStatus[worseStatusIndex];
-                    colorStatus(properties.config.currentStatus);
-               }
-          }
-     }
-};
-
-function colorStatus(status) {
-     getIndexStatus(status,function(statusIndex){
-          $img.fadeOut(500).eq(statusIndex).fadeIn(500,function(){
-               typeStatus($img.eq(statusIndex).attr("class"));
-          });
-     });
-};
-
-function typeStatus(status) {
-    Typed.new('#status', {
-        strings: [status],
-        typeSpeed: 10
-    });
-};
-
-function getAllProperties(object) {
-     var properties = [];
-     for(var key in object) {
-          properties.push(key);
-     }
-     return properties;
-};
-
-function getAllPropertiesValues(object) {
-     var properties = [];
-     for(var key in object) {
-          properties.push(object[key]);
-     }
-     return properties;
-};
-
-function getAllMethods(object) {
-    var methods = Object.getOwnPropertyNames(object).filter(function(property) {
-        return typeof object[property] == 'function';
-    });
-    return methods;
-};
-
-/* For future use... */
-var ResultTypes = {
-          loading: {
-                    background: {
-                              color: "#616161",
-                              image: "img/loading.png"
-                    },
-                    font: {
-                              color: "#424242"
-                    }
-          },
-          stable: {
-                    background: {
-                              color: "#1e88e5",
-                              image: "img/stable.png"
-                    },
-                    font: {
-                              color: "#1565c0"
-                    }
-          },
-          unstable: {
-                    background: {
-                              color: "#9e9d24",
-                              image: "img/unstable.png"
-                    },
-                    font: {
-                              color: "#827717"
-                    }
-          },
-          dangerous: {
-                    background: {
-                              color: "#ef6c00",
-                              image: "img/dangerous.png"
-                    },
-                    font: {
-                              color: "#e65100"
-                    }
-          },
-          error: {
-                    background: {
-                              color: "#d84315",
-                              image: "img/error.png"
-                    },
-                    font: {
-                              color: "#bf360c"
-                    }
-          },
-};

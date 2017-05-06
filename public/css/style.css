@@ -218,7 +218,7 @@ section.boxes ul.box div.icons {
     float: left;
 }
 
-section.boxes ul.box div.icons div.concurrentRequests {
+section.boxes ul.box div.icons div.requests {
     display: block;
     width: 64px;
     height: 64px;
@@ -228,7 +228,7 @@ section.boxes ul.box div.icons div.concurrentRequests {
     background-repeat: no-repeat;
 }
 
-section.boxes ul.box div.icons div.cpuCore {
+section.boxes ul.box div.icons div.cpu {
     display: block;
     width: 64px;
     height: 64px;
