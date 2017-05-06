@@ -3,11 +3,16 @@ const db = low('data/db.json');
 const properties  = require('../public/js/properties').config;
 
 /* Init values */
-db.defaults({ cpu: [] }).write();
+db.defaults({
+    cpu: [],
+    requests: []
+}).write();
 
 /* Utils */
 function get(monitoringVariable,index,callback) {
-    callback(db.get('cpu[' + index + ']').value());
+    var value = db.get(monitoringVariable + '[' + index + ']').value();
+    if (value === undefined) value = 0;
+    callback(value);
 };
 
 function getAll(monitoringVariable,callback) {
@@ -35,6 +40,19 @@ var CPU = function() {
     }
 };
 
+var Request = function() {
+    this.logAccess = function(data,callback) {
+        db.get('requests').unshift(data).write();
+        if ( db.get('requests').size().value() > properties.monitoringVariables.requests.totalNumberMonitoring ) {
+            db.get('requests').pop().write();
+        }
+        getAll('requests',function(values){
+            callback(values);
+        });
+    }
+};
+
 module.exports = {
-    CPU: CPU
+    CPU: CPU,
+    Request: Request
 };

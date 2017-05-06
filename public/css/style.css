@@ -103,6 +103,8 @@ section.boxes ul.box {
     overflow: hidden;
     margin: 0;
     padding: 0;
+
+    display: none;
 }
 
 section.boxes ul.box li {
@@ -205,7 +207,7 @@ section.boxes ul.box li hr {
 
 section.boxes ul.box div.icons {
     padding-top: 7px;
-    display: block;
+    display: none;
 
     width: 100px;
     height: 100px;
@@ -216,7 +218,7 @@ section.boxes ul.box div.icons {
     float: left;
 }
 
-section.boxes ul.box div.icons div.concurrentUsers {
+section.boxes ul.box div.icons div.concurrentRequests {
     display: block;
     width: 64px;
     height: 64px;
@@ -245,7 +247,7 @@ section.boxes ul.box div.graph {
     float: left;
     width: 205px;
     height: 100px;
-    display: block;
+    display: none;
 }
 
 .ct-series-a .ct-bar, .ct-series-a .ct-line, .ct-series-a .ct-point, .ct-series-a .ct-slice-donut {
@@ -267,16 +269,6 @@ section.boxes ul.box div.graph {
 
 .ct-series-a .ct-area {
     fill:#F8FFE3;
-}
-
-/* Loading Monitoring Variables */
-
-#cpuCore div.icons div {
-    display: none;
-}
-
-#cpuCore div.graph {
-    display: none;
 }
 
 @media screen and (max-width: 800px) {

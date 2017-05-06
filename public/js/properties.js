@@ -3,14 +3,18 @@
     const API_VERSION = 0;
 
     exports.config = {
+        currentStatus: 'loading',
         defaultTimeout: 5000,
-        errorMessage: 'Could not get the value of this monitoring variable!',
+        errorMessage: 'Could not get this monitoring variable!',
+        millisecondsUpdateTime: 10000,
         apiVersion: API_VERSION,
+        statusMonitoringMethodsUrl: "api/" + API_VERSION + '/status-monitoring-methods',
         monitoringVariables: {
             cpu: {
                 id: "cpuCore",
                 url: "api/" + API_VERSION + "/cpu",
                 label: "CPU Usage",
+                currentStatus: 'loading',
                 status: function(value) {
                     if (value < 70) return "stable";
                     else if (value < 90) return "unstable";
@@ -27,23 +31,34 @@
                 formatedValue: function(values){
                     return values[0] + "%";
                 },
-                millisecondsUpdateTime: 5000,
                 totalNumberMonitoring: 600,
                 chart: undefined,
                 chartType: 'pie'
             },
-            concurrentUsers: {
-                url: "api/" + API_VERSION + "/concurrent-users",
-                label: "Concurrent Users",
+            requests: {
+                id: "concurrentRequests",
+                url: "api/" + API_VERSION + "/requests",
+                label: "Concurrent Requests",
+                currentStatus: 'loading',
                 status: function(value) {
                     if (value < 1000) return "stable";
-                    else if (value < 2000) return "unstable";
+                    else if (value < 3000) return "unstable";
                     else return "dangerous";
                 },
-                chartLabels: ['h -3','h -2','h -1','now'],
+                chartLabels: ['-30s','-20s','-10s','now'],
                 chartDataIndexes: [180,120,60,0],
-                millisecondsUpdateTime: 60000,
-                totalNumberMonitoring: 1440
+                getDataAppropriately: function(json) {
+                    return [ json ];
+                },
+                value: function(values){
+                    return values[0][3];
+                },
+                formatedValue: function(values){
+                    return values[0][3];
+                },
+                totalNumberMonitoring: 720,
+                chart: undefined,
+                chartType: 'line'
             }
         }
     };
