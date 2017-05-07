@@ -2,7 +2,7 @@
 **Who loves, cares ... and keeps caring!**
 <br>
 
-<a href="https://github.com/lgapontes/hey-joe"><img src="http://linu.com.br/hey-joe/logo-256.png"  width="200" align="left" hspace="11" vspace="8"></a>
+<a href="https://github.com/lgapontes/hey-joe"><img src="http://linu.com.br/hey-joe/logo-readme-git.png"  align="left" hspace="11" vspace="8"></a>
 
 <br>
 Middleware for NodeJS monitoring.

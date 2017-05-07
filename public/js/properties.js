@@ -45,7 +45,7 @@
                     else if (value < 3000) return "unstable";
                     else return "dangerous";
                 },
-                chartLabels: ['-30s','-20s','-10s','now'],
+                chartLabels: ['-15s','-10s','-5s','now'],
                 chartDataIndexes: [180,120,60,0],
                 getDataAppropriately: function(json) {
                     return [ json ];
