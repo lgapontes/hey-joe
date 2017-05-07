@@ -2,7 +2,7 @@
 **Who loves, cares ... and keeps caring!**
 <br>
 
-<a href="https://github.com/lgapontes/hey-joe"><img src="http://linu.com.br/hey-joe/logo-256.png"  width="200" align="left" hspace="10" vspace="6"></a>
+<a href="https://github.com/lgapontes/hey-joe"><img src="http://linu.com.br/hey-joe/logo-256.png"  width="200" align="left" hspace="11" vspace="8"></a>
 
 <br>
 Middleware for NodeJS monitoring.
@@ -24,6 +24,12 @@ Add the code below in your application. This code is the call of Hey-Joe Middlew
 ```
 app.use('/hey-joe',require('hey-joe')({}));
 ```
+
+### How to access
+Hey-Joe publishes a single page in the URL "/hey-joe" from the root of the project. Upon accessing it, you will see something similar to the one below:
+
+<img src="http://linu.com.br/hey-joe/screenshot.png" />
+
 
 ### Customizing the parameters
 It is possible to customize the parameters used in the status of the monitoring variables. There are 5 possible statuses:
