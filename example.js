@@ -4,12 +4,12 @@ const app = express();
 /* Example of use */
 app.use('/hey-joe',require('./hey-joe')({
     cpu: {
-        stable: 57,
-        unstable: 60
+        stable: 60,
+        unstable: 80
     },
     requests: {
-        stable: 3,
-        unstable: 5
+        stable: 1000,
+        unstable: 2000
     }
 }));
 

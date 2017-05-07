@@ -33,7 +33,8 @@ function getMonitoringVariables() {
 
                if (count === monitoringVariables.length) {
                     if (countCallback === count) {
-                         calcTotalStatus();
+                        $('section.header div.timestamp').text(dateFormat(new Date(), "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'"));
+                        calcTotalStatus();
                     }
                }
           });
@@ -80,8 +81,6 @@ function dataLoaded(id) {
 };
 
 function getMonitoringVariable(variable,callback) {
-     console.log(new Date() + ' :: ' + variable.id);
-
      var id = '#' + variable.id;
      $.get({
          url: variable.url,

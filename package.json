@@ -6,9 +6,6 @@
   "directories": {
     "doc": "docs"
   },
-  "scripts": {
-    "test": "NODE_ENV=test mocha test/**/*.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lgapontes/hey-joe.git"
@@ -23,8 +20,8 @@
   },
   "homepage": "https://github.com/lgapontes/hey-joe#readme",
   "dependencies": {
-    "express": "^4.15.2",
-    "lowdb": "^0.16.2",
-    "os-utils": "0.0.14"
+    "express": ">=4.15.2",
+    "lowdb": "~0.16.2",
+    "os-utils": "~0.0.14"
   }
 }

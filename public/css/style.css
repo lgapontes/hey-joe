@@ -57,14 +57,29 @@ section.header img.logo {
     top: 10px;
 }
 
-section.header div.status {
+section.header div.timestamp {
+    font-size: 16px;
+    font-weight: normal;
+
     position:absolute;
     right: 10px;
     top: 10px;
     width: 250px;
+    text-align: center;
 
     display: block;
     background-color: rgba(200,200,200,0.5);
+    padding: 2px 5px 2px 5px;
+}
+
+section.header div.status {
+    position:absolute;
+    right: 10px;
+    top: 30px;
+    width: 250px;
+
+    display: block;
+    background-color: rgba(150,150,150,0.5);
     padding: 2px 5px 2px 5px;
 }
 
@@ -281,7 +296,12 @@ section.boxes ul.box div.graph {
         height: auto;
     }
 
+    section.header div.timestamp {
+        width: 200px;
+        font-size: 12px;
+    }
     section.header div.status {
+        top: 26px;
         width: 200px;
     }
 }
@@ -296,7 +316,12 @@ section.boxes ul.box div.graph {
         height: auto;
     }
 
+    section.header div.timestamp {
+        width: 150px;
+        font-size: 10px;
+    }
     section.header div.status {
+        top: 24px;
         width: 150px;
     }
 }
