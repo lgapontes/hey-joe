@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 const osUtils  = require('os-utils');
+const cors = require('cors');
 const Server = require('./lib/server').Server;
 const properties  = require('./public/js/properties').config;
 const CPU  = require('./model/models').CPU;
@@ -15,11 +16,13 @@ var cpu = new CPU();
 var request = new Request();
 
 /* Static files of Hey-Joe */
-router.use(express.static('public'));
+router.use(cors());
+//router.use(express.static('public'));
+router.use(express.static(__dirname + '/public'));
 
 /* Index */
 router.get('/', function (req, res) {
-  res.sendFile('public/index.html');
+  res.sendFile(__dirname + '/public/index.html');
 });
 
 /* API */

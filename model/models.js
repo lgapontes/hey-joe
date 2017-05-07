@@ -1,5 +1,5 @@
 const low = require('lowdb');
-const db = low('data/db.json');
+const db = low('node_modules/hey-joe/data/db.json');
 const properties  = require('../public/js/properties').config;
 
 /* Init values */

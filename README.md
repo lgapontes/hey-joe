@@ -22,7 +22,7 @@ npm install hey-joe
 Add the code below in your application. This code is the call of Hey-Joe Middleware.
 
 ```
-app.use('/hey-joe',require('./hey-joe')({}));
+app.use('/hey-joe',require('hey-joe')({}));
 ```
 
 ### Customizing the parameters
@@ -42,7 +42,7 @@ Customization can be done in the "stable" and "unstable" parameters. Hey-Joe mon
 Here are some configuration examples:
 
 ```
-app.use('/hey-joe',require('./hey-joe')({
+app.use('/hey-joe',require('hey-joe')({
     cpu: {
         stable: 60,
         unstable: 80
