@@ -38,6 +38,3 @@ jspm_packages
 
 # Tests images
 public/tests
-
-# Database LowDB
-data/db.json
