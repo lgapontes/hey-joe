@@ -1,0 +1,27 @@
+{
+  "name": "hey-joe",
+  "version": "0.0.1",
+  "description": "Middleware for NodeJS monitoring",
+  "main": "example.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lgapontes/hey-joe.git"
+  },
+  "keywords": [
+    "monitoring"
+  ],
+  "author": "Guilherme <lgapontes@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lgapontes/hey-joe/issues"
+  },
+  "homepage": "https://github.com/lgapontes/hey-joe#readme",
+  "dependencies": {
+    "express": ">=4.15.2",
+    "lowdb": "~0.16.2",
+    "os-utils": "~0.0.14"
+  }
+}

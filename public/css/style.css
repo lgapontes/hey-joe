@@ -1,0 +1,327 @@
+/* Background */
+div.image{
+    width: 100%;
+    height: 100%;
+    position:relative;
+    display:block;
+    z-index: -1;
+
+}
+div.image div{
+    position:absolute;
+    top:0px;
+    display:none;
+
+    width: 100%;
+    height:100vh;
+    background-repeat: repeat;
+    background-size: auto;
+}
+
+div.image div.loading{
+    background-color: #616161;
+    background-image: url(../img/loading.png);
+    display:block;
+}
+
+div.image div.stable{
+    background-color: #1e88e5;
+    background-image: url(../img/stable.png);
+}
+
+div.image div.unstable{
+    background-color: #9e9d24;
+    background-image: url(../img/unstable.png);
+}
+
+div.image div.dangerous{
+    background-color: #ef6c00;
+    background-image: url(../img/dangerous.png);
+}
+
+div.image div.error{
+    background-color: #d84315;
+    background-image: url(../img/error.png);
+}
+
+/* Header */
+section.header {
+    font-size: 30px;
+    font-weight: bold;
+    color: #424242;
+}
+
+section.header img.logo {
+    position:absolute;
+    left: 10px;
+    top: 10px;
+}
+
+section.header div.timestamp {
+    font-size: 16px;
+    font-weight: normal;
+
+    position:absolute;
+    right: 10px;
+    top: 10px;
+    width: 250px;
+    text-align: center;
+
+    display: block;
+    background-color: rgba(200,200,200,0.5);
+    padding: 2px 5px 2px 5px;
+}
+
+section.header div.status {
+    position:absolute;
+    right: 10px;
+    top: 30px;
+    width: 250px;
+
+    display: block;
+    background-color: rgba(150,150,150,0.5);
+    padding: 2px 5px 2px 5px;
+}
+
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
+/* Boxes */
+section.boxes {
+    margin: 10px;
+    margin-top: 120px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    color: #F8FFE3;
+}
+
+section.boxes ul.box {
+    list-style-type: none;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+
+    display: none;
+}
+
+section.boxes ul.box li {
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: #231F20;
+
+    width: 320px;
+    height: 140px;
+    display: block;
+
+    padding: 10px;
+}
+
+section.boxes ul.box li.done {
+    background-color: #231F20;
+}
+
+section.boxes ul.box li.loading {
+    background-image: url(../img/loading-boxes.gif);
+    background-size: 340px;
+    background-position: left -70px;
+}
+
+section.boxes ul.box li div.title {
+    font-size: 16px;
+    font-weight: bold;
+    float: left;
+    display: block;
+    width: 270px;
+    height: 25px;
+    text-align: left;
+    line-height: 25px;
+}
+
+section.boxes ul.box div.status {
+    display: block;
+    width: 25px;
+    height: 25px;
+    float: right;
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+section.boxes ul.box div.status div.loading {
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-image: url(../img/status.png);
+    background-position: 0px;
+}
+
+section.boxes ul.box div.status div.stable {
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-image: url(../img/status.png);
+    background-position: -25px;
+}
+
+section.boxes ul.box div.status div.unstable {
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-image: url(../img/status.png);
+    background-position: -50px;
+}
+
+section.boxes ul.box div.status div.dangerous {
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-image: url(../img/status.png);
+    background-position: -75px;
+}
+
+section.boxes ul.box div.status div.error {
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-image: url(../img/status.png);
+    background-position: -100px;
+}
+
+section.boxes ul.box div.hr {
+    display: block;
+    height: 4px;
+    clear: both;
+    margin-top: 28px;
+}
+
+section.boxes ul.box li hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(63, 63, 63, 0), rgba(63, 63, 63, 1), rgba(63, 63, 63, 0));
+    display: block;
+}
+
+section.boxes ul.box div.icons {
+    padding-top: 7px;
+    display: none;
+
+    width: 100px;
+    height: 100px;
+
+    font-size: 16px;
+    font-weight: none;
+    text-align: center;
+    float: left;
+}
+
+section.boxes ul.box div.icons div.requests {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+
+    background-image: url(../img/icons.png);
+    background-repeat: no-repeat;
+}
+
+section.boxes ul.box div.icons div.cpu {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+
+    background-image: url(../img/icons.png);
+    background-repeat: no-repeat;
+    background-position: -64px;
+}
+
+section.boxes ul.box div.graph {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    margin-top: 7px;
+    float: left;
+    width: 205px;
+    height: 100px;
+    display: none;
+}
+
+.ct-series-a .ct-bar, .ct-series-a .ct-line, .ct-series-a .ct-point, .ct-series-a .ct-slice-donut {
+    stroke: #F8FFE3;
+    stroke-width: 2px;
+}
+
+.ct-series-b .ct-bar, .ct-series-b .ct-line, .ct-series-b .ct-point, .ct-series-b .ct-slice-donut {
+    stroke: rgba(255,255,255,0.2);
+}
+
+.ct-grids line {
+  stroke: #c8cfc3;
+}
+
+.ct-labels span {
+  color: #c8cfc3;
+}
+
+.ct-series-a .ct-area {
+    fill:#F8FFE3;
+}
+
+@media screen and (max-width: 800px) {
+    section.header {
+        font-size: 24px;
+    }
+
+    section.header img.logo {
+        width: 100px;
+        height: auto;
+    }
+
+    section.header div.timestamp {
+        width: 200px;
+        font-size: 12px;
+    }
+    section.header div.status {
+        top: 26px;
+        width: 200px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    section.header {
+        font-size: 18px;
+    }
+
+    section.header img.logo {
+        width: 64px;
+        height: auto;
+    }
+
+    section.header div.timestamp {
+        width: 150px;
+        font-size: 10px;
+    }
+    section.header div.status {
+        top: 24px;
+        width: 150px;
+    }
+}
