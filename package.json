@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/lgapontes/hey-joe#readme",
   "dependencies": {
+    "cors": "^2.8.3",
     "express": ">=4.15.2",
     "lowdb": "~0.16.2",
     "os-utils": "~0.0.14"
