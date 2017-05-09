@@ -34,7 +34,7 @@ app.use('/hey-joe',require('hey-joe')({}));
 ### How to access
 Hey-Joe publishes a single page in the URL "/hey-joe" from the root of the project. Upon accessing it, you will see something similar to the one below:
 
-<img src="http://linu.com.br/hey-joe/screenshot.png" />
+<img src="http://linu.com.br/hey-joe/screenshot-0.0.6.png" />
 
 
 ### Customizing the parameters
@@ -49,7 +49,8 @@ It is possible to customize the parameters used in the status of the monitoring 
 Customization can be done in the "stable" and "unstable" parameters. Hey-Joe monitors the following monitoring variables:
 
 * cpu: percentage of CPU usage;
-* requests: number of concurrent requests on the server.
+* requests: number of concurrent requests on the server;
+* disk: percentage of disk usage.
 
 Here are some configuration examples:
 
@@ -62,6 +63,10 @@ app.use('/hey-joe',require('hey-joe')({
     requests: {
         stable: 1000,
         unstable: 2000
+    },
+    disk: {
+        stable: 50,
+        unstable: 70
     }
 }));
 ```
