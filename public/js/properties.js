@@ -59,6 +59,31 @@
                 totalNumberMonitoring: 720,
                 chart: undefined,
                 chartType: 'line'
+            },
+            disk: {
+                id: "disk",
+                url: "api/" + API_VERSION + "/disk",
+                label: "Disk Usage",
+                currentStatus: 'loading',
+                status: function(value) {
+                    if (value < 80) return "stable";
+                    else if (value < 90) return "unstable";
+                    else return "dangerous";
+                },
+                chartLabels: [],
+                chartDataIndexes: [0],
+                getDataAppropriately: function(json) {
+                    return json[0];
+                },
+                value: function(values){
+                    return values[0];
+                },
+                formatedValue: function(values){
+                    return values[0] + "%";
+                },
+                totalNumberMonitoring: 720,
+                chart: undefined,
+                chartType: 'hbar'
             }
         }
     };

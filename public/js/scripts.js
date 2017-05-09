@@ -66,6 +66,31 @@ function createChart(variable,data) {
                width: 200,
                height: 110
           });
+     } else if (variable.chartType === "hbar") {
+          variable.chart = new Chartist.Bar('#' + variable.id + ' div.graph', data, {
+            width: 200,
+            height: 90,
+            high: 100,
+            horizontalBars: true,
+            stackBars: true,
+            showLabel: true,
+            axisX: {
+              showGrid: false,
+              showLabel: false,
+              offset: 0
+            },
+            axisY: {
+              showGrid: false,
+              showLabel: false,
+              offset: 0
+            }
+          }).on('draw', function(data) {
+            if(data.type === 'bar') {
+              data.element.attr({
+                style: 'stroke-width: 50px'
+              });
+            }
+          });
      }
 };
 

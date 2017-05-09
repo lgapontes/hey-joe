@@ -256,6 +256,17 @@ section.boxes ul.box div.icons div.cpu {
     background-position: -64px;
 }
 
+section.boxes ul.box div.icons div.disk {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+
+    background-image: url(../img/icons.png);
+    background-repeat: no-repeat;
+    background-position: -128px;
+}
+
 section.boxes ul.box div.graph {
     padding: 0px;
     margin: 0px;

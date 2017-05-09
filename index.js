@@ -7,6 +7,7 @@ const Server = require('./lib/server').Server;
 const properties  = require('./public/js/properties').config;
 const CPU  = require('./model/models').CPU;
 const Request  = require('./model/models').Request;
+const Disk  = require('./model/models').Disk;
 const server = new Server();
 
 var statusMonitoringMethods = undefined;
@@ -14,6 +15,7 @@ var statusMonitoringMethods = undefined;
 /* Models */
 var cpu = new CPU();
 var request = new Request();
+var disk = new Disk();
 
 /* Static files of Hey-Joe */
 router.use(cors());
@@ -44,6 +46,18 @@ router.get('/api/' + properties.apiVersion + "/requests", function(req,res) {
             res.status(500);
         } else {
             request.logAccess(count,function(values){
+                res.json(values);
+            });
+        }
+    });
+});
+
+router.get('/api/' + properties.apiVersion + "/disk", function(req,res) {
+    server.getConcurrentRequests(req,function(error,data){
+        if (error) {
+            res.status(500);
+        } else {
+            request.save(data,function(values){
                 res.json(values);
             });
         }
