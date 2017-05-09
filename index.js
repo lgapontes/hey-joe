@@ -53,11 +53,11 @@ router.get('/api/' + properties.apiVersion + "/requests", function(req,res) {
 });
 
 router.get('/api/' + properties.apiVersion + "/disk", function(req,res) {
-    server.getConcurrentRequests(req,function(error,data){
+    server.getDiskUsage(function(error,data){
         if (error) {
             res.status(500);
         } else {
-            request.save(data,function(values){
+            disk.save(data,function(values){
                 res.json(values);
             });
         }

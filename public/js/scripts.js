@@ -151,11 +151,13 @@ function getCustomMonitoringMethods(callback) {
          success: function(json) {
                var count = 0;
                monitoringVariables.forEach(function(entry){
-                      entry.status = function(value){
-                         if (value < json[entry.id].stable) return "stable";
-                         else if (value < json[entry.id].unstable) return "unstable";
-                         else return "dangerous";
-                      };
+                      if (json[entry.id] !== undefined) {
+                        entry.status = function(value){
+                           if (value < json[entry.id].stable) return "stable";
+                           else if (value < json[entry.id].unstable) return "unstable";
+                           else return "dangerous";
+                        };
+                      }
                       count++;
 
                       if (count === monitoringVariables.length) {

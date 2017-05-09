@@ -76,10 +76,10 @@
                     return json[0];
                 },
                 value: function(values){
-                    return values[0];
+                    return values[0][0];
                 },
                 formatedValue: function(values){
-                    return values[0] + "%";
+                    return values[0][0] + "%";
                 },
                 totalNumberMonitoring: 720,
                 chart: undefined,
