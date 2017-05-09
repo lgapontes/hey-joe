@@ -5,7 +5,8 @@ const properties  = require('../public/js/properties').config;
 /* Init values */
 db.defaults({
     cpu: [],
-    requests: []
+    requests: [],
+    disk: []
 }).write();
 
 /* Utils */
@@ -52,7 +53,20 @@ var Request = function() {
     }
 };
 
+var Disk = function() {
+    this.save = function(data,callback) {
+        db.get('disk').unshift(data).write();
+        if ( db.get('disk').size().value() > properties.monitoringVariables.disk.totalNumberMonitoring ) {
+            db.get('disk').pop().write();
+        }
+        getAll('disk',function(values){
+            callback(values);
+        });
+    }
+};
+
 module.exports = {
     CPU: CPU,
-    Request: Request
+    Request: Request,
+    Disk: Disk
 };
