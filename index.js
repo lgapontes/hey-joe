@@ -1,20 +1,17 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
-const osUtils  = require('os-utils');
 const cors = require('cors');
-const Server = require('./lib/server').Server;
 const properties  = require('./public/js/properties').config;
-const CPU  = require('./model/models').CPU;
-const Request  = require('./model/models').Request;
+const Cpu  = require('./model/models').Cpu;
+const Requests  = require('./model/models').Requests;
 const Disk  = require('./model/models').Disk;
-const server = new Server();
 
 var statusMonitoringMethods = undefined;
 
 /* Models */
-var cpu = new CPU();
-var request = new Request();
+var cpu = new Cpu();
+var requests = new Requests();
 var disk = new Disk();
 
 /* Static files of Hey-Joe */
@@ -33,33 +30,31 @@ router.get('/api/' + properties.apiVersion + "/status-monitoring-methods", funct
 });
 
 router.get('/api/' + properties.apiVersion + "/cpu", function(req,res) {
-    server.getCpuStatus(function(status){
-        cpu.save(status,function(values){
-            res.json(values);
-        });
+    cpu.getStatus(req,function(error,status){
+        if (error) {
+            res.status(500);
+        } else {
+            res.json(status);
+        }
     });
 });
 
 router.get('/api/' + properties.apiVersion + "/requests", function(req,res) {
-    server.getConcurrentRequests(req,function(error,count){
+    requests.getStatus(req,function(error,status){
         if (error) {
             res.status(500);
         } else {
-            request.logAccess(count,function(values){
-                res.json(values);
-            });
+            res.json(status);
         }
     });
 });
 
 router.get('/api/' + properties.apiVersion + "/disk", function(req,res) {
-    server.getDiskUsage(function(error,data){
+    disk.getStatus(req,function(error,status){
         if (error) {
             res.status(500);
         } else {
-            disk.save(data,function(values){
-                res.json(values);
-            });
+            res.json(status);
         }
     });
 });

@@ -85,6 +85,13 @@
                 chart: undefined,
                 chartType: 'hbar'
             }
+        },
+        getAllProperties: function(object) {
+             var properties = [];
+             for(var key in object) {
+                  properties.push(key);
+             }
+             return properties;
         }
     };
 
