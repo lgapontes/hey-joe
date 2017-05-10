@@ -1,12 +1,14 @@
 # Hey-Joe
 **Who loves, cares ... and keeps caring!**
+<br><br>
+**Warning:** project in development. This is a beta.
 <br>
 
 <a href="https://github.com/lgapontes/hey-joe"><img src="http://linu.com.br/hey-joe/logo-readme-git.png"  align="left" hspace="11" vspace="8"></a>
 
 <br>
-Middleware for NodeJS monitoring (under construction).
-<br>
+Middleware for NodeJS monitoring.
+<br><br>
 With this component you will be able to monitor your <a href="https://nodejs.org/en/">NodeJS</a> application and the server where it is hosted. Hey-Joe is a module that should be integrated into <a href="https://www.npmjs.com/package/express">Express</a>, but with very little overhead on your system. It has easy installation, has very simple configuration and is open to the community to evolve. Hope you like!
 <br><br><br>
 
@@ -88,6 +90,7 @@ For example, setting the value 60 to the "stable" status of the CPU will report 
 * [cors](https://www.npmjs.com/package/cors): Enable CORS on Express.
 * [diskusage](https://www.npmjs.com/package/diskusage) and [node-gyp](https://www.npmjs.com/package/node-gyp): Library to check total hard drive usage. I explicitly mentioned "node-gyp" because it is a dependency on "diskusage" and sometimes it has errors in the installation. If this happens, run the "sudo apt-get install node-gyp" command and try again.
 * [os-utils](https://www.npmjs.com/package/os-utils): Library for operating system data.
+* [Chartist.js](https://gionkunz.github.io/chartist-js/): Very light graphics library.
 
 ### Cool Sites
 * [Many icons for web](https://icomoon.io/): Site where I got some of the icons used in this middleware.

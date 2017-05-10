@@ -171,7 +171,7 @@ function getCustomMonitoringMethods(callback) {
 
 /* Document ready */
 $( document ).ready(function() {
-     getAllProperties(properties.config.monitoringVariables).forEach(function(entry){
+     properties.config.getAllProperties(properties.config.monitoringVariables).forEach(function(entry){
           monitoringVariables.push(properties.config.monitoringVariables[entry]);
      });
      typeStatus(properties.config.currentStatus);

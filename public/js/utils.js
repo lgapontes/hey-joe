@@ -67,6 +67,7 @@ function typeStatus(status) {
     });
 };
 
+/*
 function getAllProperties(object) {
      var properties = [];
      for(var key in object) {
@@ -74,6 +75,7 @@ function getAllProperties(object) {
      }
      return properties;
 };
+*/
 
 function getAllMethods(object) {
     var methods = Object.getOwnPropertyNames(object).filter(function(property) {
