@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -31,65 +30,16 @@
     <!-- Boxes -->
     <section class="boxes">
       <ul class="box">
-            <!--
-           <li id="disk" class="loading">
-               <div class="title">Disk Usage</div>
-                <div class="status"><div class="loading"></div></div>
-               <div class="hr"><hr /></div>
-               <div class="icons">
-                    <div class="disk"></div>
-                    <br />
-                    <span>70%</span>
-               </div>
-               <div class="graph ct-chart ct-perfect-fourth"></div>
-           </li>-->
       </ul>
     </section>
 
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="js/typed.js"></script>
-    <script src="js/chartist.min.js"></script>
+    <script type="text/javascript" src="js/chartist.min.js"></script>
+    <script type="text/javascript" src="js/moment.js"></script>
     <script type="text/javascript" src="js/properties.js"></script>
+    <script type="text/javascript" src="js/custom-rules.js"></script>
     <script type="text/javascript" src="js/utils.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
-
-    <script type="text/javascript">
-        /*
-        new Chartist.Bar('#disk div.graph', {
-          labels: [],
-          series: [
-            [70],
-            [30]
-          ]
-        }, {
-          width: 200,
-          height: 90,
-          high: 100,
-          horizontalBars: true,
-          stackBars: true,
-          showLabel: true,
-          axisX: {
-            showGrid: false,
-            showLabel: false,
-            offset: 0
-          },
-          axisY: {
-            showGrid: false,
-            showLabel: false,
-            offset: 0
-          }
-        }).on('draw', function(data) {
-          if(data.type === 'bar') {
-            data.element.attr({
-              style: 'stroke-width: 50px'
-            });
-          }
-        });
-
-        $("#disk").attr('class','done');
-        $('#disk div.icons').css('display', 'block');
-        $('#disk div.graph').css('display', 'block');
-        */
-    </script>
 </body>
 </html>

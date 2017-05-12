@@ -1,26 +1,14 @@
 const properties  = require('../public/js/properties').config;
 const Repository  = require('../repositories/repository').Repository;
+const RepositoryRequests  = require('../repositories/repository').RepositoryRequests;
 const repository = new Repository();
+const repositoryRequests = new RepositoryRequests();
 
 /* Infrastructure */
 var infrastructure = {
     cpu: require('../infrastructure/cpu').cpu,
     requests: require('../infrastructure/requests').requests,
     disk: require('../infrastructure/disk').disk
-};
-
-/* Extend */
-function extend(base, sub) {
-  var origProto = sub.prototype;
-  sub.prototype = Object.create(base.prototype);
-  for (var key in origProto)  {
-     sub.prototype[key] = origProto[key];
-  }
-  sub.prototype.constructor = sub;
-  Object.defineProperty(sub.prototype, 'constructor', {
-    enumerable: false,
-    value: sub
-  });
 };
 
 /* Super Class */
@@ -47,17 +35,27 @@ BasicModel.prototype = {
 var Cpu = function() {
     BasicModel.call(this, "cpu");
 };
-extend(BasicModel, Cpu);
+properties.extend(BasicModel, Cpu);
 
 var Requests = function() {
     BasicModel.call(this, "requests");
 };
-extend(BasicModel, Requests);
+Requests.prototype = {
+    savePerHour: function(addsOneMore) {
+      repositoryRequests.savePerHour(addsOneMore);
+    },
+    getStatusPerHour: function(callback) {
+        repositoryRequests.getStatusPerHour(function(values){
+          callback(undefined,values);
+        });
+    }
+};
+properties.extend(BasicModel, Requests);
 
 var Disk = function() {
     BasicModel.call(this, "disk");
 };
-extend(BasicModel, Disk);
+properties.extend(BasicModel, Disk);
 
 module.exports = {
     Cpu: Cpu,

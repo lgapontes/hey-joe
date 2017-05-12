@@ -8,7 +8,6 @@
         errorMessage: 'Could not get this monitoring variable!',
         millisecondsUpdateTime: 5000,
         apiVersion: API_VERSION,
-        statusMonitoringMethodsUrl: "api/" + API_VERSION + '/status-monitoring-methods',
         monitoringVariables: {
             cpu: {
                 id: "cpu",
@@ -60,6 +59,35 @@
                 chart: undefined,
                 chartType: 'line'
             },
+            requestsPerHour: {
+                id: "requestsPerHour",
+                url: "api/" + API_VERSION + "/requests/hour",
+                label: "Total Requests per Hour",
+                currentStatus: 'loading',
+                status: function(value) {
+                    if (value < 60000) return "stable";
+                    else if (value < 180000) return "unstable";
+                    else return "dangerous";
+                },
+                chartLabels: ['-2h','-1h','now'],
+                chartDataIndexes: [2,1,0],
+                getDataAppropriately: function(json) {
+                    return [[
+                        json[0].count,
+                        json[1].count,
+                        json[2].count
+                    ]];
+                },
+                value: function(values){
+                    return values[0][2];
+                },
+                formatedValue: function(values){
+                    return values[0][2];
+                },
+                totalNumberMonitoring: 24,
+                chart: undefined,
+                chartType: 'line'
+            },
             disk: {
                 id: "disk",
                 url: "api/" + API_VERSION + "/disk",
@@ -92,6 +120,18 @@
                   properties.push(key);
              }
              return properties;
+        },
+        extend: function(base, sub) {
+          var origProto = sub.prototype;
+          sub.prototype = Object.create(base.prototype);
+          for (var key in origProto)  {
+             sub.prototype[key] = origProto[key];
+          }
+          sub.prototype.constructor = sub;
+          Object.defineProperty(sub.prototype, 'constructor', {
+            enumerable: false,
+            value: sub
+          });
         }
     };
 
