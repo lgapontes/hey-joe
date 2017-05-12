@@ -33,7 +33,7 @@ function getMonitoringVariables() {
 
                if (count === monitoringVariables.length) {
                     if (countCallback === count) {
-                        $('section.header div.timestamp').text(dateFormat(new Date(), "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'"));
+                        $('section.header div.timestamp').text(moment().format('YYYY-MM-DD HH:mm:ss'));
                         calcTotalStatus();
                     }
                }
@@ -132,38 +132,11 @@ function getMonitoringVariable(variable,callback) {
                     updateChart(variable,{labels: variable.chartLabels, series: values});
                }
 
-               variable.currentStatus = variable.status(variable.value(values));
+               variable.currentStatus = customRules.monitoringVariables[variable.id].status(variable.value(values));
                $(id + ' div.status div').attr('class',variable.currentStatus);
                $(id + ' div.icons span').text(variable.formatedValue(values));
 
                callback();
-          },
-         timeout: properties.config.defaultTimeout
-     });
-};
-
-function getCustomMonitoringMethods(callback) {
-     $.get({
-         url: properties.config.statusMonitoringMethodsUrl,
-         error: function(){
-               callback();
-         },
-         success: function(json) {
-               var count = 0;
-               monitoringVariables.forEach(function(entry){
-                      if (json[entry.id] !== undefined) {
-                        entry.status = function(value){
-                           if (value < json[entry.id].stable) return "stable";
-                           else if (value < json[entry.id].unstable) return "unstable";
-                           else return "dangerous";
-                        };
-                      }
-                      count++;
-
-                      if (count === monitoringVariables.length) {
-                         callback();
-                      }
-               });
           },
          timeout: properties.config.defaultTimeout
      });
@@ -175,12 +148,10 @@ $( document ).ready(function() {
           monitoringVariables.push(properties.config.monitoringVariables[entry]);
      });
      typeStatus(properties.config.currentStatus);
-     getCustomMonitoringMethods(function(){
-          showMonitoringVariables();
-          $('section.boxes ul.box').fadeIn(1000);
-          getMonitoringVariables();
+     showMonitoringVariables();
+     $('section.boxes ul.box').fadeIn(1000);
+     getMonitoringVariables();
 
-          /* Intervals */
-          setInterval(function(){ getMonitoringVariables(); }, properties.config.millisecondsUpdateTime);
-     });
+     /* Intervals */
+     setInterval(function(){ getMonitoringVariables(); }, properties.config.millisecondsUpdateTime);
 });
