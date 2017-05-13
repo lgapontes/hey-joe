@@ -48,6 +48,25 @@ Requests.prototype = {
         repositoryRequests.getStatusPerHour(function(values){
           callback(undefined,values);
         });
+    },
+    countFileKbytes: function(path) {
+      infrastructure.requests.getFileSize(path,function(error,kbytes){
+        if (error === undefined) {
+          repositoryRequests.saveKbytesPerMinute(kbytes);
+        }
+      });
+    },
+    countStringKbytes: function(str) {
+      infrastructure.requests.getStringSize(str,function(error,kbytes){
+        if (error === undefined) {
+          repositoryRequests.saveKbytesPerMinute(kbytes);
+        }
+      });
+    },
+    getKbytesPerMinute: function(callback) {
+      repositoryRequests.getKbytesPerMinute(function(values){
+        callback(undefined,values);
+      });
     }
 };
 properties.extend(BasicModel, Requests);

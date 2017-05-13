@@ -278,6 +278,17 @@ section.boxes ul.box div.icons div.requestsPerHour {
     background-position: -192px;
 }
 
+section.boxes ul.box div.icons div.kbytesPerMinute {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+
+    background-image: url(../img/icons.png);
+    background-repeat: no-repeat;
+    background-position: -256px;
+}
+
 section.boxes ul.box div.graph {
     padding: 0px;
     margin: 0px;

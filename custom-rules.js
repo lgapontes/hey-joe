@@ -21,6 +21,13 @@ var customRules = {
                 else return "dangerous";
             }
         },
+        kbytesPerMinute: {
+            status: function(value) {
+                if (value < 10240) return "stable";
+                else if (value < 102400) return "unstable";
+                else return "dangerous";
+            }
+        },
         disk: {
             status: function(value) {
                 if (value < 80) return "stable";
