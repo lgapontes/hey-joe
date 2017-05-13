@@ -32,6 +32,16 @@ router.get('/api/' + properties.apiVersion + "/cpu", function(req,res) {
     });
 });
 
+router.get('/api/' + properties.apiVersion + "/requests/mean-time", function(req,res) {
+    requests.getRequestsMeanTime(function(error,status){
+        if (error) {
+            res.status(500);
+        } else {
+            res.json(status);
+        }
+    });
+});
+
 router.get('/api/' + properties.apiVersion + "/requests", function(req,res) {
     requests.getStatus(req,function(error,status){
         if (error) {

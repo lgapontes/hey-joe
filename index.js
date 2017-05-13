@@ -13,16 +13,14 @@ router.use(cors());
 
 /* Middleware features */
 router.use(function(req,res,next){
-
-    filter.all(res,function(newRes){
+    filter.all(req,res,function(newRes){
         res = newRes;
 
-            /* Requests per hour */
+        /* Requests per hour */
         requests.savePerHour((req.originalUrl.indexOf('hey-joe') == -1));
 
         next();
     });
-
 });
 
 router.use('/hey-joe',require('./routes'));

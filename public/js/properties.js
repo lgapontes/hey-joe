@@ -29,6 +29,30 @@
                 chart: undefined,
                 chartType: 'pie'
             },
+            requestsMeanTime: {
+                id: "requestsMeanTime",
+                url: "api/" + API_VERSION + "/requests/mean-time",
+                label: "HTTP Requests Mean Time",
+                currentStatus: 'loading',
+                chartLabels: ['Min', 'Mean', 'Top'],
+                chartDataIndexes: [0],
+                getDataAppropriately: function(json) {
+                    return [
+                        json[0].minTime,
+                        json[0].meanTime,
+                        json[0].topTime
+                    ];
+                },
+                value: function(values){
+                    return values[1];
+                },
+                formatedValue: function(values){
+                    return values[1] + ' ms';
+                },
+                totalNumberMonitoring: 1,
+                chart: undefined,
+                chartType: '3bar'
+            },
             requests: {
                 id: "requests",
                 url: "api/" + API_VERSION + "/requests",

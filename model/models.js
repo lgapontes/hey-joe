@@ -67,6 +67,18 @@ Requests.prototype = {
       repositoryRequests.getKbytesPerMinute(function(values){
         callback(undefined,values);
       });
+    },
+    markStart: function(request) {
+      request.start = Date.now();
+    },
+    calcRequestTime: function(request) {
+      let time = Date.now() - request.start;
+      repositoryRequests.saveRequestsMeanTime(time);
+    },
+    getRequestsMeanTime: function(callback) {
+      repositoryRequests.getRequestsMeanTime(function(values){
+        callback(undefined,values);
+      });
     }
 };
 properties.extend(BasicModel, Requests);

@@ -7,6 +7,13 @@ var customRules = {
                 else return "dangerous";
             }
         },
+        requestsMeanTime: {
+            status: function(value) {
+                if (value < 5000) return "stable";
+                else if (value < 10000) return "unstable";
+                else return "dangerous";
+            }
+        },
         requests: {
             status: function(value) {
                 if (value < 1000) return "stable";

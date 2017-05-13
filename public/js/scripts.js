@@ -91,6 +91,35 @@ function createChart(variable,data) {
               });
             }
           });
+     } else if (variable.chartType === '3bar') {
+        variable.chart = new Chartist.Bar('#' + variable.id + ' div.graph', data, {
+            distributeSeries: true,
+            width: 200,
+            height: 110,
+            chartPadding: 0
+        }).on('draw', function(data) {
+            var barHorizontalCenter, barVerticalCenter, label, value;
+            if(data.type === 'bar') {
+              data.element.attr({
+                style: 'stroke-width: 20px; stroke: #F8FFE3'
+              });
+
+              barHorizontalCenter = data.x1 + (data.element.width() * .5);
+              barVerticalCenter = data.y1 + (data.element.height() * -1) - 5;
+              value = data.element.attr('ct:value');
+              if (value !== '0') {
+                label = new Chartist.Svg('text');
+                label.text(value);
+                label.addClass("ct-barlabel");
+                label.attr({
+                  x: barHorizontalCenter,
+                  y: barVerticalCenter,
+                  'text-anchor': 'middle'
+                });
+                return data.group.append(label);
+              }
+            }
+          });
      }
 };
 
