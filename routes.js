@@ -52,6 +52,16 @@ router.get('/api/' + properties.apiVersion + "/requests/hour", function(req,res)
     });
 });
 
+router.get('/api/' + properties.apiVersion + "/kbytes/minute", function(req,res) {
+    requests.getKbytesPerMinute(function(error,status){
+        if (error) {
+            res.status(500);
+        } else {
+            res.json(status);
+        }
+    });
+});
+
 router.get('/api/' + properties.apiVersion + "/disk", function(req,res) {
     disk.getStatus(req,function(error,status){
         if (error) {

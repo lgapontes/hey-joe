@@ -8,7 +8,8 @@ db.defaults({
     cpu: [],
     requests: [],
     disk: [],
-    requestsPerHour: []
+    requestsPerHour: [],
+    kbytesPerMinute: []
 }).write();
 
 var Repository = function() {};
@@ -61,7 +62,7 @@ RepositoryRequests.prototype = {
             }
         } else {
             let newRequests = {
-                timestamp: moment().format('YYYY-MM-DD_HH'),
+                timestamp: timestamp,
                 count: 0
             };
             if (addsOneMore) {
@@ -79,6 +80,29 @@ RepositoryRequests.prototype = {
             callback(values);
         },function(value){
             return { count: value };
+        });
+    },
+    saveKbytesPerMinute: function(kbytes) {
+        let data = db.get('kbytesPerMinute[0]').value();
+        let timestamp = moment().format('YYYY-MM-DD_HH:mm');
+        if ( (data !== undefined) && (data.timestamp === timestamp) ) {
+            db.set('kbytesPerMinute[0].total', data.total + kbytes).write();
+        } else {
+            let newData = {
+                timestamp: timestamp,
+                total: kbytes
+            }
+            db.get('kbytesPerMinute').unshift(newData).write();
+            if ( db.get('kbytesPerMinute').size().value() > properties.monitoringVariables.kbytesPerMinute.totalNumberMonitoring ) {
+                db.get('kbytesPerMinute').pop().write();
+            }
+        }
+    },
+    getKbytesPerMinute(callback) {
+        this.getAll('kbytesPerMinute',function(values){
+            callback(values);
+        },function(value){
+            return { total: value };
         });
     }
 };

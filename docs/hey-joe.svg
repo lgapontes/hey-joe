@@ -24,6 +24,18 @@
      id="defs4">
     <linearGradient
        inkscape:collect="always"
+       id="linearGradient5824">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="0"
+         id="stop5826" />
+      <stop
+         style="stop-color:#f8ffe3;stop-opacity:1"
+         offset="1"
+         id="stop5828" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
        id="linearGradient4883">
       <stop
          style="stop-color:#ffffff;stop-opacity:1"
@@ -403,6 +415,16 @@
        y1="1550.2058"
        x2="-2055.6514"
        y2="1614.8367" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5824"
+       id="linearGradient5830"
+       x1="-2152.2346"
+       y1="1317.9618"
+       x2="-2089.676"
+       y2="1381.6179"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(116.35146,139.00611)" />
   </defs>
   <sodipodi:namedview
      inkscape:window-maximized="1"
@@ -415,8 +437,8 @@
      showgrid="false"
      inkscape:current-layer="layer1"
      inkscape:document-units="px"
-     inkscape:cy="-446.46905"
-     inkscape:cx="-2029.0718"
+     inkscape:cy="-492.56484"
+     inkscape:cx="-2295.0955"
      inkscape:zoom="0.91114605"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
@@ -2443,14 +2465,14 @@
       </g>
     </g>
     <g
-       id="g4899">
+       id="g5832">
       <rect
          y="1456.4414"
          x="-2292.2004"
          height="64"
-         width="256"
+         width="320"
          id="rect4690-5"
-         style="opacity:0.99;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="opacity:0.98999999;fill:#000000;fill-opacity:1;stroke:none;stroke-width:2;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <g
          transform="matrix(1.1200749,0,0,1.1200749,251.85293,-118.09365)"
          id="g4939">
@@ -2604,6 +2626,11 @@
            d="m -2093.3394,1597.2472 c 0,-9.452 5.992,-17.532 14.376,-20.636 1.016,-2.284 1.624,-4.824 1.624,-7.364 0,-9.94 0,-18 -12,-18 -12,0 -12,8.06 -12,18 0,6.192 3.592,12.38 8,14.864 l 0,3.3 c -13.568,1.108 -24,7.776 -24,15.836 l 24.832,0 c -0.54,-1.908 -0.832,-3.92 -0.832,-6 z"
            id="path4686" />
       </g>
+      <path
+         style="fill:url(#linearGradient5830);fill-opacity:1"
+         inkscape:connector-curvature="0"
+         d="m -2004.2004,1490.5747 16,-17.0666 -12.0002,0 0,-17.0667 -8,0 0,17.0667 -11.9998,0 z m 14.5441,-6.9802 -4.484,4.7829 16.256,6.464 -26.3161,10.4661 -26.3161,-10.4661 16.256,-6.464 -4.484,-4.7829 -17.4559,6.9802 0,17.0667 32,12.8 32,-12.8 0,-17.0667 z"
+         id="path5771" />
     </g>
   </g>
 </svg>

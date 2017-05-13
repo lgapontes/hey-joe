@@ -14,11 +14,6 @@
                 url: "api/" + API_VERSION + "/cpu",
                 label: "CPU Usage",
                 currentStatus: 'loading',
-                status: function(value) {
-                    if (value < 70) return "stable";
-                    else if (value < 90) return "unstable";
-                    else return "dangerous";
-                },
                 chartLabels: [],
                 chartDataIndexes: [0],
                 getDataAppropriately: function(json) {
@@ -39,11 +34,6 @@
                 url: "api/" + API_VERSION + "/requests",
                 label: "Concurrent Requests",
                 currentStatus: 'loading',
-                status: function(value) {
-                    if (value < 1000) return "stable";
-                    else if (value < 3000) return "unstable";
-                    else return "dangerous";
-                },
                 chartLabels: ['-15s','-10s','-5s','now'],
                 chartDataIndexes: [180,120,60,0],
                 getDataAppropriately: function(json) {
@@ -64,11 +54,6 @@
                 url: "api/" + API_VERSION + "/requests/hour",
                 label: "Total Requests per Hour",
                 currentStatus: 'loading',
-                status: function(value) {
-                    if (value < 60000) return "stable";
-                    else if (value < 180000) return "unstable";
-                    else return "dangerous";
-                },
                 chartLabels: ['-2h','-1h','now'],
                 chartDataIndexes: [2,1,0],
                 getDataAppropriately: function(json) {
@@ -88,16 +73,36 @@
                 chart: undefined,
                 chartType: 'line'
             },
+            kbytesPerMinute: {
+                id: "kbytesPerMinute",
+                url: "api/" + API_VERSION + "/kbytes/minute",
+                label: "Download Kbytes per Minute",
+                currentStatus: 'loading',
+                chartLabels: ['-3m','-2m','-1m','now'],
+                chartDataIndexes: [3,2,1,0],
+                getDataAppropriately: function(json) {
+                    return [[
+                        parseFloat(json[0].total).toFixed(2),
+                        parseFloat(json[1].total).toFixed(2),
+                        parseFloat(json[2].total).toFixed(2),
+                        parseFloat(json[3].total).toFixed(2)
+                    ]];
+                },
+                value: function(values){
+                    return values[0][3];
+                },
+                formatedValue: function(values){
+                    return values[0][3] + ' KB';
+                },
+                totalNumberMonitoring: 60,
+                chart: undefined,
+                chartType: 'line'
+            },
             disk: {
                 id: "disk",
                 url: "api/" + API_VERSION + "/disk",
                 label: "Disk Usage",
                 currentStatus: 'loading',
-                status: function(value) {
-                    if (value < 80) return "stable";
-                    else if (value < 90) return "unstable";
-                    else return "dangerous";
-                },
                 chartLabels: [],
                 chartDataIndexes: [0],
                 getDataAppropriately: function(json) {

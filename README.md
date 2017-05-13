@@ -1,5 +1,6 @@
 # Hey-Joe (beta)
 **Who loves, cares ... and keeps caring!**
+<br>
 **Pay attention**: we are in beta version. Soon (a few days) we will have added other monitoring variables (the black boxes of the screenshot below). I promise to put at least another 3 per week.
 <br>
 
@@ -37,7 +38,7 @@ app.use(require('hey-joe'));
 ### How to access
 Hey-Joe publishes a single page in the URL "/hey-joe" from the root of the project. Upon accessing it, you will see something similar to the one below:
 
-<img src="http://linu.com.br/hey-joe/screenshot-0.0.9.png" />
+<img src="http://linu.com.br/hey-joe/screenshot-0.0.10.png" />
 
 
 ### Customizing the parameters
@@ -53,7 +54,7 @@ The customization of the rules for obtaining the status of the monitoring variab
 
 ```
 var customRules = {
-    monitoringVariables = {
+    monitoringVariables: {
         cpu: {
             status: function(value) {
                 if (value < 70) return "stable";
@@ -61,27 +62,7 @@ var customRules = {
                 else return "dangerous";
             }
         },
-        requests: {
-            status: function(value) {
-                if (value < 1000) return "stable";
-                else if (value < 3000) return "unstable";
-                else return "dangerous";
-            }
-        },
-        requestsPerHour: {
-            status: function(value) {
-                if (value < 60000) return "stable";
-                else if (value < 180000) return "unstable";
-                else return "dangerous";
-            }
-        },
-        disk: {
-            status: function(value) {
-                if (value < 80) return "stable";
-                else if (value < 90) return "unstable";
-                else return "dangerous";
-            }
-        }
+        /* other configuration... */
     }
 };
 ```
@@ -91,6 +72,7 @@ By the "status" functions available within each monitoring variable you can chan
 * cpu: percentage of CPU usage;
 * requests: number of concurrent requests on the server. In this case, the Hey-Joe middleware requisitions are counted;
 * requestsPerHour: Indicates the total number of requests per hour. In this case, Hey-Joe middleware requests are NOT counted;
+* kbytesPerMinute: Total KBytes downloaded by users per minute. This variable also considers the data (REST api and static content) used by Hey-Joe;
 * disk: percentage of disk usage.
 
 See below for an example configuration where the "status" function of the cpu variable will always return "stable" if it has less than 30% processing. Otherwise, it returns "dangerous".
@@ -104,9 +86,7 @@ var customRules = {
                 else return "dangerous";
             }
         },
-        requests: { /* other configuration... */ },
-        requestsPerHour: { /* other configuration... */ },
-        disk: { /* other configuration... */ }
+        /* other configuration... */
     }
 };
 ```
@@ -140,6 +120,8 @@ As you will see, Hey-Joe background changes color according to the behavior of h
 * [os-utils](https://www.npmjs.com/package/os-utils): Library for operating system data.
 * [Chartist.js](https://gionkunz.github.io/chartist-js/): Very light graphics library.
 * [moment.js](https://momentjs.com/): Date manipulation library.
+* [is-buffer](https://www.npmjs.com/package/is-buffer): Determine if an object is a Buffer.
+* [utf8](https://www.npmjs.com/package/utf8): utf8.js is a well-tested UTF-8 encoder/decoder written in JavaScript.
 
 ### Cool Sites
 * [Many icons for web](https://icomoon.io/): Site where I got some of the icons used in this middleware.
