@@ -9,7 +9,8 @@ db.defaults({
     requests: [],
     disk: [],
     requestsPerHour: [],
-    kbytesPerMinute: []
+    kbytesPerMinute: [],
+    requestsMeanTime: []
 }).write();
 
 var Repository = function() {};
@@ -103,6 +104,44 @@ RepositoryRequests.prototype = {
             callback(values);
         },function(value){
             return { total: value };
+        });
+    },
+    saveRequestsMeanTime(time) {
+        let data = db.get('requestsMeanTime[0]').value();
+        if (data === undefined) {
+            data = {
+                minTime: 0,
+                meanTime: 0,
+                topTime: 0,
+                totalTime: 0,
+                counter: 0
+            };
+        }
+
+        data.counter = data.counter + 1;
+
+        if ( (time < data.minTime) || (data.minTime === 0) ) {
+            data.minTime = time;
+        } else if (time > data.topTime) {
+            data.topTime = time;
+        }
+
+        data.totalTime = data.totalTime + time;
+        data.meanTime = parseInt( data.totalTime / data.counter );
+
+        db.set('requestsMeanTime[0]', data).write();
+    },
+    getRequestsMeanTime(callback) {
+       this.getAll('requestsMeanTime',function(values){
+            callback(values);
+        },function(value){
+            return {
+                minTime: value,
+                meanTime: value,
+                topTime: value,
+                totalTime: value,
+                counter: value
+            };
         });
     }
 };

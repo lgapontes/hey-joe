@@ -289,6 +289,17 @@ section.boxes ul.box div.icons div.kbytesPerMinute {
     background-position: -256px;
 }
 
+section.boxes ul.box div.icons div.requestsMeanTime {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+
+    background-image: url(../img/icons.png);
+    background-repeat: no-repeat;
+    background-position: -320px;
+}
+
 section.boxes ul.box div.graph {
     padding: 0px;
     margin: 0px;
@@ -319,6 +330,11 @@ section.boxes ul.box div.graph {
 
 .ct-series-a .ct-area {
     fill:#F8FFE3;
+}
+
+.ct-barlabel {
+    font-size: 12px;
+    fill: #c8cfc3;
 }
 
 @media screen and (max-width: 800px) {

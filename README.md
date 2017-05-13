@@ -38,7 +38,7 @@ app.use(require('hey-joe'));
 ### How to access
 Hey-Joe publishes a single page in the URL "/hey-joe" from the root of the project. Upon accessing it, you will see something similar to the one below:
 
-<img src="http://linu.com.br/hey-joe/screenshot-0.0.10.png" />
+<img src="http://linu.com.br/hey-joe/screenshot-0.0.11.png" />
 
 
 ### Customizing the parameters
@@ -70,6 +70,7 @@ var customRules = {
 By the "status" functions available within each monitoring variable you can change the variable status calculation rule. Currently Hey-Joe works with the following monitoring variables:
 
 * cpu: percentage of CPU usage;
+* requestsMeanTime: calculates the average time of requests http. The graph displays the values in milliseconds, indicating the best time, the mean time, and the worst time;
 * requests: number of concurrent requests on the server. In this case, the Hey-Joe middleware requisitions are counted;
 * requestsPerHour: Indicates the total number of requests per hour. In this case, Hey-Joe middleware requests are NOT counted;
 * kbytesPerMinute: Total KBytes downloaded by users per minute. This variable also considers the data (REST api and static content) used by Hey-Joe;
