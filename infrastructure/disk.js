@@ -1,7 +1,7 @@
 const disk = require('diskusage');
 const os = require('os');
 
-let mainDisk = '/boot';
+let mainDisk = undefined;
 
 var Disk = function() {
     this.getStatus = function(request,callback) {
