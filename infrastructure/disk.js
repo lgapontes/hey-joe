@@ -1,9 +1,12 @@
 const disk = require('diskusage');
 const os = require('os');
 
+let mainDisk = undefined;
+
 var Disk = function() {
     this.getStatus = function(request,callback) {
         let path = os.platform() === 'win32' ? 'c:' : '/';
+        if (mainDisk !== undefined) path = mainDisk;
         disk.check(path, function(error, info) {
             if (error) {
                 callback(error);

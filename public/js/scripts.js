@@ -92,11 +92,13 @@ function createChart(variable,data) {
             }
           });
      } else if (variable.chartType === '3bar') {
+        let high = data.series[2] + 300;
         variable.chart = new Chartist.Bar('#' + variable.id + ' div.graph', data, {
             distributeSeries: true,
             width: 200,
             height: 110,
-            chartPadding: 0
+            chartPadding: 0,
+            high: high
         }).on('draw', function(data) {
             var barHorizontalCenter, barVerticalCenter, label, value;
             if(data.type === 'bar') {
@@ -104,7 +106,12 @@ function createChart(variable,data) {
                 style: 'stroke-width: 20px; stroke: #F8FFE3'
               });
 
-              barHorizontalCenter = data.x1 + (data.element.width() * .5);
+              let marginLeft = 10;
+              if(/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())){
+                marginLeft = 0;
+              }
+
+              barHorizontalCenter = data.x1 + (data.element.width() * .5) - marginLeft;
               barVerticalCenter = data.y1 + (data.element.height() * -1) - 5;
               value = data.element.attr('ct:value');
               if (value !== '0') {
