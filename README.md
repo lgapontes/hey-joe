@@ -29,14 +29,14 @@ sudo apt-get install node-gyp
 ```
 
 ### One Step Configuration
-Add the code below in your application. This code is the call of Hey-Joe Middleware with the "use" method of Express.
+Add the code below in your application. This code is the call of Hey-Joe Middleware with the _use_ method of Express.
 
-```
+```javascript
 app.use(require('hey-joe'));
 ```
 
 ### How to access
-Hey-Joe publishes a single page in the URL "/hey-joe" from the root of the project. Upon accessing it, you will see something similar to the one below:
+Hey-Joe publishes a single page in the URL _/hey-joe_ from the root of the project. Upon accessing it, you will see something similar to the one below:
 
 <img src="http://linu.com.br/hey-joe/screenshot-0.0.11.png" />
 
@@ -50,10 +50,11 @@ It is possible to customize the parameters used in the status of the monitoring 
 * dangerous: the system is in a dangerous status, almost at the limit of use;
 * error: occurs when it is not possible to obtain data from the resource, either because of a general failure, or because the system has reached a critical use status.
 
-The customization of the rules for obtaining the status of the monitoring variables can be accomplished by changing the "custom-rules.js" file located in the Hey-Joe middleware root (node_modules/hey-joe). When you open this file, you will see the following code:
+The customization of the rules for obtaining the status of the monitoring variables can be accomplished by changing the _custom-rules.js_ file located in the Hey-Joe middleware root (node_modules/hey-joe). When you open this file, you will see the following code:
 
-```
+```javascript
 var customRules = {
+    /* others configurations... */
     monitoringVariables: {
         cpu: {
             status: function(value) {
@@ -62,24 +63,31 @@ var customRules = {
                 else return "dangerous";
             }
         },
-        /* other configuration... */
+        /* others configurations... */
     }
 };
 ```
 
-By the "status" functions available within each monitoring variable you can change the variable status calculation rule. Currently Hey-Joe works with the following monitoring variables:
+By the _status_ functions available within each monitoring variable you can change the variable status calculation rule. Currently Hey-Joe works with the following monitoring variables:
 
-* cpu: percentage of CPU usage;
-* requestsMeanTime: calculates the average time of requests http. The graph displays the values in milliseconds, indicating the best time, the mean time, and the worst time;
-* requests: number of concurrent requests on the server. In this case, the Hey-Joe middleware requisitions are counted;
-* requestsPerHour: Indicates the total number of requests per hour. In this case, Hey-Joe middleware requests are NOT counted;
-* kbytesPerMinute: Total KBytes downloaded by users per minute. This variable also considers the data (REST api and static content) used by Hey-Joe;
-* disk: percentage of disk usage.
+| Variable | URL | Description |
+| --- | --- | --- |
+| cpu | /api/0/cpu | Percentage of CPU usage. The calculation of the percentage of use is obtained with the aid of the library [os-utils](https://www.npmjs.com/package/os-utils), comparing use and free values of the CPU. |
+| requestsMeanTime | /api/0/requests/mean-time | Calculates the average time of requests http. The graph displays the values in milliseconds, indicating the best time, the mean time, and the worst time. The request value is obtained through the difference between a timestamp marked on the request entry (as soon as the Hey-Joe Middleware is added) and a timestamp marked on the final response command (Hey-Joe has a filter for this). The sum of all these values divided by the total of requisitions gives us the average value. Among all, the fastest is indicated in the _min_ and the worst in the _top_. |
+| requests | /api/0/requests | Number of concurrent requests on the server. In this case, the Hey-Joe middleware requisitions are counted. This value is obtained through an internal NodeJS command (socket.server.getConnections). |
+| requestsPerHour | /api/0/requests/hour | Indicates the total number of requests per hour. In this case, Hey-Joe middleware requests are NOT counted. This value is obtained through a counter that records all requisitions. Every hour this value is reset. |
+| kbytesPerMinute | /api/0/kbytes/minute | Total KBytes downloaded by users per minute. This variable also considers the data (REST api and static content) used by Hey-Joe. Hey-Joe has a filter that runs on all end events of the Express _response_ object. At this time, all return byte types are calculated. There are the following return types: file, json, or html. The bytes of the returns are summed and stored in a counter that is cleaned every minute. |
+| disk | /api/0/disk | Percentage of disk usage. This variable is obtained with the aid of the [diskusage](https://www.npmjs.com/package/diskusage) library. Attention: Hey-Joe will only consider the use of the main disk of the operating system. That is, **/** on Linux and macOS systems and **C:** on Windows systems. If you need to point to another disk, change the value of the _mainDisk_ variable in the _infrastructure/disk.js_ file. See an example: _let mainDisk = '/boot';_ |
 
-See below for an example configuration where the "status" function of the cpu variable will always return "stable" if it has less than 30% processing. Otherwise, it returns "dangerous".
+**Comments:**
+1. The value 0 is the version number of the API, which for the moment is zero.
+2. Before the first **/** you should put the address of your website and the appropriate protocol (http or https).
 
-```
+See below for an example configuration where the _status_ function of the cpu variable will always return _stable_ if it has less than 30% processing. Otherwise, it returns _dangerous_.
+
+```javascript
 var customRules = {
+    /* others configurations... */
     monitoringVariables = {
         cpu: {
             status: function(value) {
@@ -87,7 +95,7 @@ var customRules = {
                 else return "dangerous";
             }
         },
-        /* other configuration... */
+        /* others configurations... */
     }
 };
 ```
@@ -99,10 +107,10 @@ Note that the returned status must be written in the lower case. Rules like this
 As you will see, Hey-Joe background changes color according to the behavior of his monitoring variables. The color will always indicate the worst status among the variables. The colors used are:
 
 * Gray: only during the first reading of the variables;
-* Blue: indicates that all variables are stable, according to the rules defined in the "custom-rules.js" file;
+* Blue: indicates that all variables are stable, according to the rules defined in the _custom-rules.js_ file;
 * Light brown: indicates that one or more variables are unstable. Not so bad, but stay tuned;
 * Orange: indicates a dangerous status to the system (according to its rules). If it continues to get worse, it could lead to a denial of service;
-* Red: call the administrators! Your server is off or extremely compromised. Caution: If there is a code error in the "custom-rules.js" file, this color will also be displayed.
+* Red: call the administrators! Your server is off or extremely compromised. **Caution**: If there is a code error in the _custom-rules.js_ file, this color will also be displayed.
 
 ### Next features (coming soon, in version 0.1.0)
 
@@ -117,7 +125,7 @@ As you will see, Hey-Joe background changes color according to the behavior of h
 * [JQuery](https://jquery.com/): no comments...
 * [lowdb](https://www.npmjs.com/package/lowdb): A NoSQL database that stores JSON's in a local file.
 * [cors](https://www.npmjs.com/package/cors): Enable CORS on Express.
-* [diskusage](https://www.npmjs.com/package/diskusage) and [node-gyp](https://www.npmjs.com/package/node-gyp): Library to check total hard drive usage. I explicitly mentioned "node-gyp" because it is a dependency on "diskusage" and sometimes it has errors in the installation. If this happens, run the "sudo apt-get install node-gyp" command and try again.
+* [diskusage](https://www.npmjs.com/package/diskusage) and [node-gyp](https://www.npmjs.com/package/node-gyp): Library to check total hard drive usage. I explicitly mentioned _node-gyp_ because it is a dependency on _diskusage_ and sometimes it has errors in the installation. If this happens, run the _sudo apt-get install node-gyp_ command and try again.
 * [os-utils](https://www.npmjs.com/package/os-utils): Library for operating system data.
 * [Chartist.js](https://gionkunz.github.io/chartist-js/): Very light graphics library.
 * [moment.js](https://momentjs.com/): Date manipulation library.
