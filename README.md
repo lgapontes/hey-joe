@@ -38,7 +38,7 @@ app.use(require('hey-joe'));
 ### How to access
 Hey-Joe publishes a single page in the URL _/hey-joe_ from the root of the project. Upon accessing it, you will see something similar to the one below:
 
-<img src="http://linu.com.br/hey-joe/screenshot-0.0.11.png" />
+<img src="http://linu.com.br/hey-joe/screenshot-0.0.13.png" />
 
 
 ### Customizing the parameters
@@ -54,7 +54,6 @@ The customization of the rules for obtaining the status of the monitoring variab
 
 ```javascript
 var customRules = {
-    /* others configurations... */
     monitoringVariables: {
         cpuOS: {
             status: function(value) {
@@ -73,7 +72,7 @@ By the _status_ functions available within each monitoring variable you can chan
 | Variable | Description |
 | --- | --- |
 | **cpuOS** | Percentage of CPU usage by Operating System. The calculation of the percentage of use is obtained with the aid of the library [os-utils](https://www.npmjs.com/package/os-utils), comparing use and free values of the CPU.<br>**URL:** /api/0/cpu/os |
-| **cpuProcess** | Percentage of CPU usage by NodeJS Process. We use the [pidusage](https://www.npmjs.com/package/pidusage) library to obtain the CPU data used by the current NodeJS process. This library is Cross-Platform and gets this process data through operating system commands.<br>**URL:** /api/0/cpu/process |
+| **cpuProcess** | Percentage of CPU usage by NodeJS Process. We use the [pidusage](https://www.npmjs.com/package/pidusage) library to obtain the CPU % used by the current NodeJS process. This library is Cross-Platform and gets this process data through operating system commands.<br>**URL:** /api/0/cpu/process |
 | **requestsMeanTime** | Calculates the average time of requests http. The graph displays the values in milliseconds, indicating the best time, the mean time, and the worst time. The request value is obtained through the difference between a timestamp marked on the request entry (as soon as the Hey-Joe Middleware is added) and a timestamp marked on the final response command (Hey-Joe has a filter for this). The sum of all these values divided by the total of requisitions gives us the average value. Among all, the fastest is indicated in the _min_ and the worst in the _top_.<br>**URL:** /api/0/requests/mean-time |
 | **requests** | Number of concurrent requests on the server. In this case, the Hey-Joe middleware requisitions are counted. This value is obtained through an internal NodeJS command (socket.server.getConnections).<br>**URL:** /api/0/requests |
 | **requestsPerHour** | Indicates the total number of requests per hour. In this case, Hey-Joe middleware requests are NOT counted. This value is obtained through a counter that records all requisitions. Every hour this value is reset.<br>**URL:** /api/0/requests/hour |
@@ -88,7 +87,6 @@ See below for an example configuration where the _status_ function of the cpu va
 
 ```javascript
 var customRules = {
-    /* others configurations... */
     monitoringVariables = {
         cpuOS: {
             status: function(value) {
