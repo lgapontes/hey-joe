@@ -56,7 +56,7 @@ The customization of the rules for obtaining the status of the monitoring variab
 var customRules = {
     /* others configurations... */
     monitoringVariables: {
-        cpu: {
+        cpuOS: {
             status: function(value) {
                 if (value < 70) return "stable";
                 else if (value < 90) return "unstable";
@@ -72,7 +72,8 @@ By the _status_ functions available within each monitoring variable you can chan
 
 | Variable | Description |
 | --- | --- |
-| **cpu** | Percentage of CPU usage. The calculation of the percentage of use is obtained with the aid of the library [os-utils](https://www.npmjs.com/package/os-utils), comparing use and free values of the CPU.<br>**URL:** /api/0/cpu |
+| **cpuOS** | Percentage of CPU usage by Operating System. The calculation of the percentage of use is obtained with the aid of the library [os-utils](https://www.npmjs.com/package/os-utils), comparing use and free values of the CPU.<br>**URL:** /api/0/cpu/os |
+| **cpuProcess** | Percentage of CPU usage by NodeJS Process. We use the [pidusage](https://www.npmjs.com/package/pidusage) library to obtain the CPU data used by the current NodeJS process. This library is Cross-Platform and gets this process data through operating system commands.<br>**URL:** /api/0/cpu/process |
 | **requestsMeanTime** | Calculates the average time of requests http. The graph displays the values in milliseconds, indicating the best time, the mean time, and the worst time. The request value is obtained through the difference between a timestamp marked on the request entry (as soon as the Hey-Joe Middleware is added) and a timestamp marked on the final response command (Hey-Joe has a filter for this). The sum of all these values divided by the total of requisitions gives us the average value. Among all, the fastest is indicated in the _min_ and the worst in the _top_.<br>**URL:** /api/0/requests/mean-time |
 | **requests** | Number of concurrent requests on the server. In this case, the Hey-Joe middleware requisitions are counted. This value is obtained through an internal NodeJS command (socket.server.getConnections).<br>**URL:** /api/0/requests |
 | **requestsPerHour** | Indicates the total number of requests per hour. In this case, Hey-Joe middleware requests are NOT counted. This value is obtained through a counter that records all requisitions. Every hour this value is reset.<br>**URL:** /api/0/requests/hour |
@@ -81,7 +82,7 @@ By the _status_ functions available within each monitoring variable you can chan
 
 **Comments:**
 1. The value 0 is the version number of the API, which for the moment is zero.
-2. Before the first **/** you should put the address of your website and the appropriate protocol (http or https).
+2. Before the first **/** in URL you should put the address of your website and the appropriate protocol (http or https).
 
 See below for an example configuration where the _status_ function of the cpu variable will always return _stable_ if it has less than 30% processing. Otherwise, it returns _dangerous_.
 
@@ -89,7 +90,7 @@ See below for an example configuration where the _status_ function of the cpu va
 var customRules = {
     /* others configurations... */
     monitoringVariables = {
-        cpu: {
+        cpuOS: {
             status: function(value) {
                 if (value < 30) return "stable";
                 else return "dangerous";
@@ -131,6 +132,7 @@ As you will see, Hey-Joe background changes color according to the behavior of h
 * [moment.js](https://momentjs.com/): Date manipulation library.
 * [is-buffer](https://www.npmjs.com/package/is-buffer): Determine if an object is a Buffer.
 * [utf8](https://www.npmjs.com/package/utf8): utf8.js is a well-tested UTF-8 encoder/decoder written in JavaScript.
+* [pidusage](https://www.npmjs.com/package/pidusage): Cross-platform process cpu % and memory usage of a PID.
 
 ### Cool Sites
 * [Many icons for web](https://icomoon.io/): Site where I got some of the icons used in this middleware.

@@ -1,6 +1,7 @@
 const osUtils  = require('os-utils');
+const pusage = require('pidusage')
 
-var Cpu = function() {
+var CpuOS = function() {
     this.getStatus = function(request,callback) {
         osUtils.cpuUsage(function(value){
             var cpuUsage = parseInt(value * 100);
@@ -13,8 +14,35 @@ var Cpu = function() {
     };
 };
 
-var obj = new Cpu();
+var CpuProcess = function() {
+    this.getStatus = function(request,callback) {
+        pusage.stat(process.pid, function(err, stat) {
+            if (err) {
+                callback(err);
+            } else {
+                if (stat.cpu === undefined) {
+                    callback('CPU status not found!');
+                } else {
+                    let cpuUsage = parseInt(stat.cpu)
+                    let cpuFree = 100 - cpuUsage;
+
+                    /* Unmonitor process */
+                    pusage.unmonitor(process.pid);
+
+                    callback(undefined,[
+                        cpuUsage,
+                        cpuFree
+                    ]);
+                }
+            }
+        });
+    };
+};
+
+var cpuOS = new CpuOS();
+var cpuProcess = new CpuProcess();
 
 module.exports = {
-    cpu: obj
+    cpuOS: cpuOS,
+    cpuProcess: cpuProcess
 };

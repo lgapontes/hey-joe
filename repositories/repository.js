@@ -5,7 +5,8 @@ const moment = require('../public/js/moment');
 
 /* Init values */
 db.defaults({
-    cpu: [],
+    cpuOS: [],
+    cpuProcess: [],
     requests: [],
     disk: [],
     requestsPerHour: [],

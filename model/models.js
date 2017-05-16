@@ -6,7 +6,8 @@ const repositoryRequests = new RepositoryRequests();
 
 /* Infrastructure */
 var infrastructure = {
-    cpu: require('../infrastructure/cpu').cpu,
+    cpuOS: require('../infrastructure/cpu').cpuOS,
+    cpuProcess: require('../infrastructure/cpu').cpuProcess,
     requests: require('../infrastructure/requests').requests,
     disk: require('../infrastructure/disk').disk
 };
@@ -32,10 +33,15 @@ BasicModel.prototype = {
 };
 
 /* Models */
-var Cpu = function() {
-    BasicModel.call(this, "cpu");
+var CpuOS = function() {
+    BasicModel.call(this, "cpuOS");
 };
-properties.extend(BasicModel, Cpu);
+properties.extend(BasicModel, CpuOS);
+
+var CpuProcess = function() {
+    BasicModel.call(this, "cpuProcess");
+};
+properties.extend(BasicModel, CpuProcess);
 
 var Requests = function() {
     BasicModel.call(this, "requests");
@@ -89,7 +95,8 @@ var Disk = function() {
 properties.extend(BasicModel, Disk);
 
 module.exports = {
-    Cpu: Cpu,
+    CpuOS: CpuOS,
+    CpuProcess: CpuProcess,
     Requests: Requests,
     Disk: Disk
 };
