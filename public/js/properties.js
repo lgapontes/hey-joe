@@ -9,10 +9,30 @@
         millisecondsUpdateTime: 5000,
         apiVersion: API_VERSION,
         monitoringVariables: {
-            cpu: {
-                id: "cpu",
-                url: "api/" + API_VERSION + "/cpu",
-                label: "CPU Usage",
+            cpuOS: {
+                id: "cpuOS",
+                url: "api/" + API_VERSION + "/cpu/os",
+                label: "CPU (Operating System)",
+                currentStatus: 'loading',
+                chartLabels: [],
+                chartDataIndexes: [0],
+                getDataAppropriately: function(json) {
+                    return json[0];
+                },
+                value: function(values){
+                    return values[0];
+                },
+                formatedValue: function(values){
+                    return values[0] + "%";
+                },
+                totalNumberMonitoring: 600,
+                chart: undefined,
+                chartType: 'pie'
+            },
+            cpuProcess: {
+                id: "cpuProcess",
+                url: "api/" + API_VERSION + "/cpu/process",
+                label: "CPU (NodeJS Process)",
                 currentStatus: 'loading',
                 chartLabels: [],
                 chartDataIndexes: [0],

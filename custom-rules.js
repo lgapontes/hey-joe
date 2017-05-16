@@ -1,9 +1,16 @@
 var customRules = {
     monitoringVariables: {
-        cpu: {
+        cpuOS: {
             status: function(value) {
                 if (value < 70) return "stable";
                 else if (value < 90) return "unstable";
+                else return "dangerous";
+            }
+        },
+        cpuProcess: {
+            status: function(value) {
+                if (value < 50) return "stable";
+                else if (value < 70) return "unstable";
                 else return "dangerous";
             }
         },

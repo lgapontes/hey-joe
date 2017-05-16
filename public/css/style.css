@@ -245,7 +245,7 @@ section.boxes ul.box div.icons div.requests {
     background-repeat: no-repeat;
 }
 
-section.boxes ul.box div.icons div.cpu {
+section.boxes ul.box div.icons div.cpuOS {
     display: block;
     width: 64px;
     height: 64px;
@@ -298,6 +298,17 @@ section.boxes ul.box div.icons div.requestsMeanTime {
     background-image: url(../img/icons.png);
     background-repeat: no-repeat;
     background-position: -320px;
+}
+
+section.boxes ul.box div.icons div.cpuProcess {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+
+    background-image: url(../img/icons.png);
+    background-repeat: no-repeat;
+    background-position: -384px;
 }
 
 section.boxes ul.box div.graph {

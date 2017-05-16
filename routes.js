@@ -2,14 +2,16 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 const properties  = require('./public/js/properties').config;
-const Cpu  = require('./model/models').Cpu;
+const CpuOS  = require('./model/models').CpuOS;
+const CpuProcess  = require('./model/models').CpuProcess;
 const Requests  = require('./model/models').Requests;
 const Disk  = require('./model/models').Disk;
 
 /* Models */
-var cpu = new Cpu();
-var requests = new Requests();
-var disk = new Disk();
+let cpuOS = new CpuOS();
+let cpuProcess = new CpuProcess();
+let requests = new Requests();
+let disk = new Disk();
 
 /* Static files of Hey-Joe */
 router.use(express.static(__dirname + '/public'));
@@ -22,8 +24,18 @@ router.get('/js/custom-rules.js', function (req, res) {
   res.sendFile(__dirname + '/custom-rules.js');
 });
 
-router.get('/api/' + properties.apiVersion + "/cpu", function(req,res) {
-    cpu.getStatus(req,function(error,status){
+router.get('/api/' + properties.apiVersion + "/cpu/os", function(req,res) {
+    cpuOS.getStatus(req,function(error,status){
+        if (error) {
+            res.status(500);
+        } else {
+            res.json(status);
+        }
+    });
+});
+
+router.get('/api/' + properties.apiVersion + "/cpu/process", function(req,res) {
+    cpuProcess.getStatus(req,function(error,status){
         if (error) {
             res.status(500);
         } else {
