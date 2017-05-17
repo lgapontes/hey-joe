@@ -1,4 +1,4 @@
-# Hey-Joe (beta)
+# Hey-Joe
 **Who loves, cares ... and keeps caring!**
 <br>
 **Pay attention**: we are in beta version. Soon (a few days) we will have added other monitoring variables (the black boxes of the screenshot below). I promise to put at least another 3 per week.
@@ -38,7 +38,7 @@ app.use(require('hey-joe'));
 ### How to access
 Hey-Joe publishes a single page in the URL _/hey-joe_ from the root of the project. Upon accessing it, you will see something similar to the one below:
 
-<img src="http://linu.com.br/hey-joe/screenshot-0.0.13.png" />
+<img src="http://linu.com.br/hey-joe/screenshot-0.0.14.png" />
 
 
 ### Customizing the parameters
@@ -78,12 +78,14 @@ By the _status_ functions available within each monitoring variable you can chan
 | **requestsPerHour** | Indicates the total number of requests per hour. In this case, Hey-Joe middleware requests are NOT counted. This value is obtained through a counter that records all requisitions. Every hour this value is reset.<br>**URL:** /api/0/requests/hour |
 | **kbytesPerMinute** | Total KBytes downloaded by users per minute. This variable also considers the data (REST api and static content) used by Hey-Joe. Hey-Joe has a filter that runs on all end events of the Express _response_ object. At this time, all return byte types are calculated. There are the following return types: file, json, or html. The bytes of the returns are summed and stored in a counter that is cleaned every minute.<br>**URL:** /api/0/kbytes/minute |
 | **disk** | Percentage of disk usage. This variable is obtained with the aid of the [diskusage](https://www.npmjs.com/package/diskusage) library. Attention: Hey-Joe will only consider the use of the main disk of the operating system. That is, **/** on Linux and macOS systems and **C:** on Windows systems. If you need to point to another disk, change the value of the _mainDisk_ variable in the _infrastructure/disk.js_ file. See an example: _let mainDisk = '/boot';_<br>**URL:** /api/0/disk |
+| **uptimeOS** | The operating system uptime is obtained through the os.uptime() command from the NodeJS internal library.<br>**URL:** /api/0/uptime/os |
+| **uptimeProcess** | The uptime of the process by which the NodeJS is executed is obtained through the process.uptime() command from the NodeJS internal library.<br>**URL:** /api/0/uptime/process |
 
 **Comments:**
 1. The value 0 is the version number of the API, which for the moment is zero.
 2. Before the first **/** in URL you should put the address of your website and the appropriate protocol (http or https).
 
-See below for an example configuration where the _status_ function of the cpu variable will always return _stable_ if it has less than 30% processing. Otherwise, it returns _dangerous_.
+See below for an example configuration where the _status_ function of the cpuOS variable will always return _stable_ if it has less than 30% processing. Otherwise, it returns _dangerous_.
 
 ```javascript
 var customRules = {

@@ -311,6 +311,28 @@ section.boxes ul.box div.icons div.cpuProcess {
     background-position: -384px;
 }
 
+section.boxes ul.box div.icons div.uptimeOS {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+
+    background-image: url(../img/icons.png);
+    background-repeat: no-repeat;
+    background-position: -448px;
+}
+
+section.boxes ul.box div.icons div.uptimeProcess {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+
+    background-image: url(../img/icons.png);
+    background-repeat: no-repeat;
+    background-position: -512px;
+}
+
 section.boxes ul.box div.graph {
     padding: 0px;
     margin: 0px;
@@ -320,6 +342,44 @@ section.boxes ul.box div.graph {
     width: 205px;
     height: 100px;
     display: none;
+}
+
+section.boxes ul.box div.graph div.uptime {
+    width: 48px;
+    display: block;
+    float: left;
+    margin-right: 2px;
+}
+
+section.boxes ul.box div.graph div.uptime div.title {
+    width: 48px;
+    height: 27px;
+    display: block;
+    float: left;
+    color: #F8FFE3;
+    font-size: 12px;
+    text-align: center;
+    padding-top: 3px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: rgba(255,255,255,0.2);
+}
+
+section.boxes ul.box div.graph div.uptime div.data {
+    padding: 0px;
+    margin: 0px;
+    width: 48px;
+    height: 43px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: block;
+    float: left;
+    background-color: #F8FFE3;
+    color: #231F20;
+    font-size: 34px;
+    font-weight: bold;
+    padding-top: 7px;
+    text-align: center;
 }
 
 .ct-series-a .ct-bar, .ct-series-a .ct-line, .ct-series-a .ct-point, .ct-series-a .ct-slice-donut {

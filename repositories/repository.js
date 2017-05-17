@@ -11,7 +11,9 @@ db.defaults({
     disk: [],
     requestsPerHour: [],
     kbytesPerMinute: [],
-    requestsMeanTime: []
+    requestsMeanTime: [],
+    uptimeOS: [],
+    uptimeProcess: []
 }).write();
 
 var Repository = function() {};

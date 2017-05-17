@@ -9,7 +9,9 @@ var infrastructure = {
     cpuOS: require('../infrastructure/cpu').cpuOS,
     cpuProcess: require('../infrastructure/cpu').cpuProcess,
     requests: require('../infrastructure/requests').requests,
-    disk: require('../infrastructure/disk').disk
+    disk: require('../infrastructure/disk').disk,
+    uptimeOS: require('../infrastructure/uptime').uptimeOS,
+    uptimeProcess: require('../infrastructure/uptime').uptimeProcess
 };
 
 /* Super Class */
@@ -94,9 +96,21 @@ var Disk = function() {
 };
 properties.extend(BasicModel, Disk);
 
+var UptimeOS = function() {
+    BasicModel.call(this, "uptimeOS");
+};
+properties.extend(BasicModel, UptimeOS);
+
+var UptimeProcess = function() {
+    BasicModel.call(this, "uptimeProcess");
+};
+properties.extend(BasicModel, UptimeProcess);
+
 module.exports = {
     CpuOS: CpuOS,
     CpuProcess: CpuProcess,
     Requests: Requests,
-    Disk: Disk
+    Disk: Disk,
+    UptimeOS: UptimeOS,
+    UptimeProcess: UptimeProcess
 };

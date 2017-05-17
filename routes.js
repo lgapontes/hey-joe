@@ -6,12 +6,16 @@ const CpuOS  = require('./model/models').CpuOS;
 const CpuProcess  = require('./model/models').CpuProcess;
 const Requests  = require('./model/models').Requests;
 const Disk  = require('./model/models').Disk;
+const UptimeOS = require('./model/models').UptimeOS;
+const UptimeProcess = require('./model/models').UptimeProcess;
 
 /* Models */
 let cpuOS = new CpuOS();
 let cpuProcess = new CpuProcess();
 let requests = new Requests();
 let disk = new Disk();
+let uptimeOS = new UptimeOS();
+let uptimeProcess = new UptimeProcess();
 
 /* Static files of Hey-Joe */
 router.use(express.static(__dirname + '/public'));
@@ -86,6 +90,26 @@ router.get('/api/' + properties.apiVersion + "/kbytes/minute", function(req,res)
 
 router.get('/api/' + properties.apiVersion + "/disk", function(req,res) {
     disk.getStatus(req,function(error,status){
+        if (error) {
+            res.status(500);
+        } else {
+            res.json(status);
+        }
+    });
+});
+
+router.get('/api/' + properties.apiVersion + "/uptime/os", function(req,res) {
+    uptimeOS.getStatus(req,function(error,status){
+        if (error) {
+            res.status(500);
+        } else {
+            res.json(status);
+        }
+    });
+});
+
+router.get('/api/' + properties.apiVersion + "/uptime/process", function(req,res) {
+    uptimeProcess.getStatus(req,function(error,status){
         if (error) {
             res.status(500);
         } else {
