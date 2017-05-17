@@ -6,7 +6,7 @@
         currentStatus: 'loading',
         defaultTimeout: 3000,
         errorMessage: 'Could not get this monitoring variable!',
-        millisecondsUpdateTime: 5000,
+        millisecondsUpdateTime: 10000,
         apiVersion: API_VERSION,
         monitoringVariables: {
             cpuOS: {
@@ -25,7 +25,7 @@
                 formatedValue: function(values){
                     return values[0] + "%";
                 },
-                totalNumberMonitoring: 600,
+                totalNumberMonitoring: 360,
                 chart: undefined,
                 chartType: 'pie'
             },
@@ -45,7 +45,7 @@
                 formatedValue: function(values){
                     return values[0] + "%";
                 },
-                totalNumberMonitoring: 600,
+                totalNumberMonitoring: 360,
                 chart: undefined,
                 chartType: 'pie'
             },
@@ -78,8 +78,8 @@
                 url: "api/" + API_VERSION + "/requests",
                 label: "Concurrent Requests",
                 currentStatus: 'loading',
-                chartLabels: ['-15s','-10s','-5s','now'],
-                chartDataIndexes: [180,120,60,0],
+                chartLabels: ['-30s','-20s','-10s','now'],
+                chartDataIndexes: [3,2,1,0],
                 getDataAppropriately: function(json) {
                     return [ json ];
                 },
@@ -89,7 +89,7 @@
                 formatedValue: function(values){
                     return values[0][3];
                 },
-                totalNumberMonitoring: 720,
+                totalNumberMonitoring: 360,
                 chart: undefined,
                 chartType: 'line'
             },
@@ -158,9 +158,99 @@
                 formatedValue: function(values){
                     return values[0][0] + "%";
                 },
-                totalNumberMonitoring: 720,
+                totalNumberMonitoring: 360,
                 chart: undefined,
                 chartType: 'hbar'
+            },
+            uptimeOS: {
+                id: "uptimeOS",
+                url: "api/" + API_VERSION + "/uptime/os",
+                label: "Operating System Uptime",
+                currentStatus: 'loading',
+                chartLabels: ['years','months','days','hours'],
+                chartDataIndexes: [0],
+                getDataAppropriately: function(json) {
+                    return [
+                        json[0].years,
+                        json[0].months,
+                        json[0].days,
+                        json[0].hours,
+                        json[0].minutes,
+                        json[0].seconds
+                    ];
+                },
+                value: function(values){
+                    return {
+                        years: values[0],
+                        months: values[1],
+                        days: values[2],
+                        hours: values[3],
+                        minutes: values[4],
+                        seconds: values[5]
+                    };
+                },
+                formatedValue: function(values){
+                    function round(v) {
+                        return Math.round( v * 10 ) / 10;
+                    }
+                    var minutes = round((values[5] / 60) + values[4]);
+                    var hours = round((minutes / 60) + values[3]);
+                    var days = round((hours / 24) + values[2]);
+                    var months = round((days / 30) + values[1]);
+                    var years = round((months / 12) + values[0]);
+                    if (years > 0) return years + ' years';
+                    if (months > 0) return months + ' months';
+                    if (days > 0) return days + ' days';
+                    return hours + ' hours';
+                },
+                totalNumberMonitoring: 1,
+                chart: undefined,
+                chartType: 'uptime'
+            },
+            uptimeProcess: {
+                id: "uptimeProcess",
+                url: "api/" + API_VERSION + "/uptime/process",
+                label: "NodeJS Uptime",
+                currentStatus: 'loading',
+                chartLabels: ['years','months','days','hours'],
+                chartDataIndexes: [0],
+                getDataAppropriately: function(json) {
+                    return [
+                        json[0].years,
+                        json[0].months,
+                        json[0].days,
+                        json[0].hours,
+                        json[0].minutes,
+                        json[0].seconds
+                    ];
+                },
+                value: function(values){
+                    return {
+                        years: values[0],
+                        months: values[1],
+                        days: values[2],
+                        hours: values[3],
+                        minutes: values[4],
+                        seconds: values[5]
+                    };
+                },
+                formatedValue: function(values){
+                    function round(v) {
+                        return Math.round( v * 10 ) / 10;
+                    }
+                    var minutes = round((values[5] / 60) + values[4]);
+                    var hours = round((minutes / 60) + values[3]);
+                    var days = round((hours / 24) + values[2]);
+                    var months = round((days / 30) + values[1]);
+                    var years = round((months / 12) + values[0]);
+                    if (years > 0) return years + ' years';
+                    if (months > 0) return months + ' months';
+                    if (days > 0) return days + ' days';
+                    return hours + ' hours';
+                },
+                totalNumberMonitoring: 1,
+                chart: undefined,
+                chartType: 'uptime'
             }
         },
         getAllProperties: function(object) {

@@ -48,6 +48,38 @@ var customRules = {
                 else if (value < 90) return "unstable";
                 else return "dangerous";
             }
+        },
+        uptimeOS: {
+            status: function(value) {
+                /*
+                    In this case, value is a JSON with values of the uptime period, as shown below:
+                    {
+                        years: integer,
+                        months: integer,
+                        days: integer,
+                        hours: integer,
+                        minutes: integer,
+                        seconds: integer
+                    }
+                */
+                return "stable";
+            }
+        },
+        uptimeProcess: {
+            status: function(value) {
+                /*
+                    In this case, value is a JSON with values of the uptime period, as shown below:
+                    {
+                        years: integer,
+                        months: integer,
+                        days: integer,
+                        hours: integer,
+                        minutes: integer,
+                        seconds: integer
+                    }
+                */
+                return "stable";
+            }
         }
     }
 };

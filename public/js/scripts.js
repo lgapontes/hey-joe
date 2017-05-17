@@ -127,6 +127,15 @@ function createChart(variable,data) {
               }
             }
           });
+     } else if (variable.chartType === 'uptime') {
+        for(var i =0; i<data.labels.length; i++) {
+          $('#' + variable.id + ' div.graph').append(
+                '<div class="uptime">' +
+                '  <div class="title">' + data.labels[i] + '</div>' +
+                '  <div class="data">' + data.series[i] + '</div>' +
+                '</div>'
+            );
+        }
      }
 };
 

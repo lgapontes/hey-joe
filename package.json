@@ -1,6 +1,6 @@
 {
   "name": "hey-joe",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Middleware for NodeJS monitoring",
   "main": "example.js",
   "directories": {
