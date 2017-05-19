@@ -11,7 +11,8 @@ var infrastructure = {
     requests: require('../infrastructure/requests').requests,
     disk: require('../infrastructure/disk').disk,
     uptimeOS: require('../infrastructure/uptime').uptimeOS,
-    uptimeProcess: require('../infrastructure/uptime').uptimeProcess
+    uptimeProcess: require('../infrastructure/uptime').uptimeProcess,
+    residentSetSize: require('../infrastructure/memory').residentSetSize
 };
 
 /* Super Class */
@@ -106,11 +107,17 @@ var UptimeProcess = function() {
 };
 properties.extend(BasicModel, UptimeProcess);
 
+var ResidentSetSize = function() {
+    BasicModel.call(this, "residentSetSize");
+};
+properties.extend(BasicModel, ResidentSetSize);
+
 module.exports = {
     CpuOS: CpuOS,
     CpuProcess: CpuProcess,
     Requests: Requests,
     Disk: Disk,
     UptimeOS: UptimeOS,
-    UptimeProcess: UptimeProcess
+    UptimeProcess: UptimeProcess,
+    ResidentSetSize: ResidentSetSize
 };
