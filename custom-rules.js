@@ -80,6 +80,11 @@ var customRules = {
                 */
                 return "stable";
             }
+        },
+        residentSetSize: {
+            status: function(value) {
+                return "stable";
+            }
         }
     }
 };

@@ -38,7 +38,7 @@ app.use(require('hey-joe'));
 ### How to access
 Hey-Joe publishes a single page in the URL _/hey-joe_ from the root of the project. Upon accessing it, you will see something similar to the one below:
 
-<img src="http://linu.com.br/hey-joe/screenshot-0.0.14.png" />
+<img src="http://linu.com.br/hey-joe/screenshot-0.0.15.png" />
 
 
 ### Customizing the parameters
@@ -80,6 +80,7 @@ By the _status_ functions available within each monitoring variable you can chan
 | **disk** | Percentage of disk usage. This variable is obtained with the aid of the [diskusage](https://www.npmjs.com/package/diskusage) library. Attention: Hey-Joe will only consider the use of the main disk of the operating system. That is, **/** on Linux and macOS systems and **C:** on Windows systems. If you need to point to another disk, change the value of the _mainDisk_ variable in the _infrastructure/disk.js_ file. See an example: _let mainDisk = '/boot';_<br>**URL:** /api/0/disk |
 | **uptimeOS** | The operating system uptime is obtained through the os.uptime() command from the NodeJS internal library.<br>**URL:** /api/0/uptime/os |
 | **uptimeProcess** | The uptime of the process by which the NodeJS is executed is obtained through the process.uptime() command from the NodeJS internal library.<br>**URL:** /api/0/uptime/process |
+| **residentSetSize** | A running program is always represented through some space allocated in memory. This space is called Resident Set. This variable displays the size (in megabytes) of the Resident Set of the NodeJS over time.<br>**URL:** /api/0/memory/rss |
 
 **Comments:**
 1. The value 0 is the version number of the API, which for the moment is zero.

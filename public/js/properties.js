@@ -251,6 +251,26 @@
                 totalNumberMonitoring: 1,
                 chart: undefined,
                 chartType: 'uptime'
+            },
+            residentSetSize: {
+                id: "residentSetSize",
+                url: "api/" + API_VERSION + "/memory/rss",
+                label: "Resident Set Size",
+                currentStatus: 'loading',
+                chartLabels: ['-30s','-20s','-10s','now'],
+                chartDataIndexes: [3,2,1,0],
+                getDataAppropriately: function(json) {
+                    return [ json ];
+                },
+                value: function(values){
+                    return values[0][3];
+                },
+                formatedValue: function(values){
+                    return values[0][3] + ' MB';
+                },
+                totalNumberMonitoring: 60,
+                chart: undefined,
+                chartType: 'line'
             }
         },
         getAllProperties: function(object) {
