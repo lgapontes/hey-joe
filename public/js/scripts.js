@@ -136,6 +136,55 @@ function createChart(variable,data) {
                 '</div>'
             );
         }
+     } else if (variable.chartType === 'heap') {
+        variable.chart = new Chartist.Bar('#' + variable.id + ' div.graph', data, {
+          width: 200,
+          height: 110,
+          chartPadding: {
+                 right: 0,
+                 left: 0
+          },
+          stackBars: true,
+          showLabel: true,
+          axisX: {
+            showGrid: false,
+            showLabel: true
+          },
+          axisY: {
+            showGrid: true,
+            showLabel: true
+          }
+        }).on('draw', function(data) {
+          if(data.type === 'bar') {
+            data.element.attr({
+              style: 'stroke-width: 35px'
+            });
+          }
+        });
+     } else if (variable.chartType === "hbar2") {
+          variable.chart = new Chartist.Bar('#' + variable.id + ' div.graph', data, {
+            width: 200,
+            height: 90,
+            horizontalBars: true,
+            stackBars: true,
+            showLabel: true,
+            axisX: {
+              showGrid: false,
+              showLabel: false,
+              offset: 0
+            },
+            axisY: {
+              showGrid: false,
+              showLabel: false,
+              offset: 0
+            }
+          }).on('draw', function(data) {
+            if(data.type === 'bar') {
+              data.element.attr({
+                style: 'stroke-width: 50px'
+              });
+            }
+          });
      }
 };
 

@@ -9,6 +9,8 @@ const Disk  = require('./model/models').Disk;
 const UptimeOS = require('./model/models').UptimeOS;
 const UptimeProcess = require('./model/models').UptimeProcess;
 const ResidentSetSize = require('./model/models').ResidentSetSize;
+const Heap = require('./model/models').Heap;
+const ProcessMemory = require('./model/models').ProcessMemory;
 
 /* Models */
 let cpuOS = new CpuOS();
@@ -18,6 +20,8 @@ let disk = new Disk();
 let uptimeOS = new UptimeOS();
 let uptimeProcess = new UptimeProcess();
 let residentSetSize = new ResidentSetSize();
+let heap = new Heap();
+let processMemory = new ProcessMemory();
 
 /* Static files of Hey-Joe */
 router.use(express.static(__dirname + '/public'));
@@ -122,6 +126,26 @@ router.get('/api/' + properties.apiVersion + "/uptime/process", function(req,res
 
 router.get('/api/' + properties.apiVersion + "/memory/rss", function(req,res) {
     residentSetSize.getStatus(req,function(error,status){
+        if (error) {
+            res.status(500);
+        } else {
+            res.json(status);
+        }
+    });
+});
+
+router.get('/api/' + properties.apiVersion + "/memory/heap", function(req,res) {
+    heap.getStatus(req,function(error,status){
+        if (error) {
+            res.status(500);
+        } else {
+            res.json(status);
+        }
+    });
+});
+
+router.get('/api/' + properties.apiVersion + "/memory/process", function(req,res) {
+    processMemory.getStatus(req,function(error,status){
         if (error) {
             res.status(500);
         } else {
