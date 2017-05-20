@@ -14,7 +14,9 @@ db.defaults({
     requestsMeanTime: [],
     uptimeOS: [],
     uptimeProcess: [],
-    residentSetSize: []
+    residentSetSize: [],
+    heap: [],
+    processMemory: []
 }).write();
 
 var Repository = function() {};

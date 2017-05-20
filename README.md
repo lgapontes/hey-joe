@@ -1,7 +1,7 @@
 # Hey-Joe
 **Who loves, cares ... and keeps caring!**
 <br>
-**Pay attention**: we are in beta version. Soon (a few days) we will have added other monitoring variables (the black boxes of the screenshot below). I promise to put at least another 3 per week.
+**Pay attention**: we are in beta version. At this time (versions 0.1.x) we are checking the consistency of the monitoring variables (the black boxes of the image below) in different operating systems and the portability of the monitoring page between browsers.
 <br>
 
 <a href="https://github.com/lgapontes/hey-joe"><img src="http://linu.com.br/hey-joe/logo-readme-git.png"  align="left" hspace="11" vspace="8"></a>
@@ -38,7 +38,7 @@ app.use(require('hey-joe'));
 ### How to access
 Hey-Joe publishes a single page in the URL _/hey-joe_ from the root of the project. Upon accessing it, you will see something similar to the one below:
 
-<img src="http://linu.com.br/hey-joe/screenshot-0.0.15.png" />
+<img src="http://linu.com.br/hey-joe/screenshot-0.1.0.png" />
 
 
 ### Customizing the parameters
@@ -81,6 +81,8 @@ By the _status_ functions available within each monitoring variable you can chan
 | **uptimeOS** | The operating system uptime is obtained through the os.uptime() command from the NodeJS internal library.<br>**URL:** /api/0/uptime/os |
 | **uptimeProcess** | The uptime of the process by which the NodeJS is executed is obtained through the process.uptime() command from the NodeJS internal library.<br>**URL:** /api/0/uptime/process |
 | **residentSetSize** | A running program is always represented through some space allocated in memory. This space is called Resident Set. This variable displays the size (in megabytes) of the Resident Set of the NodeJS over time.<br>**URL:** /api/0/memory/rss |
+| **heap** | Heap is a memory segment dedicated to storing reference types like objects, strings and closures. The chart will show current and recent used and total values in megabytes.<br>**URL:** /api/0/memory/heap |
+| **processMemory** | Displays the memory used by the NodeJS process (in megabytes) and the total available memory on the server. We use the [pidusage](https://www.npmjs.com/package/pidusage) library to obtain the NodeJS memory and [OS](https://nodejs.org/api/os.html) library to obtain total memory of the server.<br>**URL:** /api/0/memory/process |
 
 **Comments:**
 1. The value 0 is the version number of the API, which for the moment is zero.
@@ -113,13 +115,6 @@ As you will see, Hey-Joe background changes color according to the behavior of h
 * Light brown: indicates that one or more variables are unstable. Not so bad, but stay tuned;
 * Orange: indicates a dangerous status to the system (according to its rules). If it continues to get worse, it could lead to a denial of service;
 * Red: call the administrators! Your server is off or extremely compromised. **Caution**: If there is a code error in the _custom-rules.js_ file, this color will also be displayed.
-
-### Next features (coming soon, in version 0.1.0)
-
-* Many other types of monitoring variables, such as server memory and NodeJS, network traffic, average time of requests, etc;
-* Interface improvements to improve notification of potential issues;
-* Hey-Joe API documentation;
-* Improved parameter customization.
 
 ### Prerequisites
 * [NodeJS](https://nodejs.org/en/): Obviously, to run everything, including this middleware.

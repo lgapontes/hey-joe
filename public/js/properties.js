@@ -271,6 +271,52 @@
                 totalNumberMonitoring: 60,
                 chart: undefined,
                 chartType: 'line'
+            },
+            heap: {
+                id: "heap",
+                url: "api/" + API_VERSION + "/memory/heap",
+                label: "Heap Used",
+                currentStatus: 'loading',
+                chartLabels: ['-20s','-10s','now'],
+                chartDataIndexes: [2,1,0],
+                getDataAppropriately: function(json) {
+                    return [
+                        [json[0].used, json[1].used, json[2].used],
+                        [json[0].total, json[1].total, json[2].total],
+                    ];
+                },
+                value: function(values){
+                    return values;
+                },
+                formatedValue: function(values){
+                    return values[0][2] + " MB";
+                },
+                totalNumberMonitoring: 60,
+                chart: undefined,
+                chartType: 'heap'
+            },
+            processMemory: {
+                id: "processMemory",
+                url: "api/" + API_VERSION + "/memory/process",
+                label: "Used Memory (NodeJS)",
+                currentStatus: 'loading',
+                chartLabels: [],
+                chartDataIndexes: [0],
+                getDataAppropriately: function(json) {
+                    return json[0];
+                },
+                value: function(values){
+                    return {
+                        used: values[0][0],
+                        total: values[1][0],
+                    };
+                },
+                formatedValue: function(values){
+                    return values[0][0] + " MB";
+                },
+                totalNumberMonitoring: 1,
+                chart: undefined,
+                chartType: 'hbar2'
             }
         },
         getAllProperties: function(object) {

@@ -2,6 +2,7 @@ var customRules = {
     monitoringVariables: {
         cpuOS: {
             status: function(value) {
+                /* Value is a % of use */
                 if (value < 70) return "stable";
                 else if (value < 90) return "unstable";
                 else return "dangerous";
@@ -9,6 +10,7 @@ var customRules = {
         },
         cpuProcess: {
             status: function(value) {
+                /* Value is a % of use */
                 if (value < 50) return "stable";
                 else if (value < 70) return "unstable";
                 else return "dangerous";
@@ -16,6 +18,7 @@ var customRules = {
         },
         requestsMeanTime: {
             status: function(value) {
+                /* Brings the average request time in milliseconds */
                 if (value < 5000) return "stable";
                 else if (value < 10000) return "unstable";
                 else return "dangerous";
@@ -23,6 +26,7 @@ var customRules = {
         },
         requests: {
             status: function(value) {
+                /* Total of concurrent requests */
                 if (value < 1000) return "stable";
                 else if (value < 3000) return "unstable";
                 else return "dangerous";
@@ -44,6 +48,7 @@ var customRules = {
         },
         disk: {
             status: function(value) {
+                /* Value is a % of use */
                 if (value < 80) return "stable";
                 else if (value < 90) return "unstable";
                 else return "dangerous";
@@ -84,6 +89,34 @@ var customRules = {
         residentSetSize: {
             status: function(value) {
                 return "stable";
+            }
+        },
+        heap: {
+            status: function(value) {
+                /*
+                    Value contains a table (array of arrays), where index 0 is associated with the value used and index 1 is the total value.
+                    Within each, there is an array with the last 3 values obtained, with index 2 being the most recently obtained.
+                    That is, value[0][2] stores the value of the heap used and value[1][2] stores its total.
+                */
+                var used = ( value[0][2] / value[1][2] );
+                if ( used < 0.66 ) return "stable";
+                else if ( used < 0.9 ) return "unstable";
+                else return "dangerous";
+            }
+        },
+        processMemory: {
+           status: function(value) {
+                /*
+                    Value is a json that contains the memory used by NodeJS and the total memory of the operating system, as shown in the following example:
+                    {
+                        used: 50,
+                        total: 8000
+                    }
+                */
+                var percentage = value.used / value.total;
+                if (percentage < 50) return "stable";
+                else if (percentage < 70) return "unstable";
+                else return "dangerous";
             }
         }
     }

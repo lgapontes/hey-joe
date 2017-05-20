@@ -1,5 +1,5 @@
 const osUtils  = require('os-utils');
-const pusage = require('pidusage')
+const pusage = require('pidusage');
 
 var CpuOS = function() {
     this.getStatus = function(request,callback) {
