@@ -1,3 +1,4 @@
+const path = require('path');
 const properties  = require('../public/js/properties').config;
 const Repository  = require('../repositories/repository').Repository;
 const RepositoryRequests  = require('../repositories/repository').RepositoryRequests;
@@ -60,19 +61,11 @@ Requests.prototype = {
           callback(undefined,values);
         });
     },
-    countFileKbytes: function(path) {
-      infrastructure.requests.getFileSize(path,function(error,kbytes){
-        if (error === undefined) {
+    countKbytes: function(bytes) {
+      var kbytes = bytes / 1024;
+      if (kbytes !== undefined) {
           repositoryRequests.saveKbytesPerMinute(kbytes);
-        }
-      });
-    },
-    countStringKbytes: function(str) {
-      infrastructure.requests.getStringSize(str,function(error,kbytes){
-        if (error === undefined) {
-          repositoryRequests.saveKbytesPerMinute(kbytes);
-        }
-      });
+      }
     },
     getKbytesPerMinute: function(callback) {
       repositoryRequests.getKbytesPerMinute(function(values){

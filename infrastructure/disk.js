@@ -1,4 +1,4 @@
-const disk = require('diskusage');
+const diskspace = require('diskspace');
 const os = require('os');
 
 let mainDisk = undefined;
@@ -7,12 +7,13 @@ var Disk = function() {
     this.getStatus = function(request,callback) {
         let path = os.platform() === 'win32' ? 'c:' : '/';
         if (mainDisk !== undefined) path = mainDisk;
-        disk.check(path, function(error, info) {
+
+        diskspace.check(path, function (error, result) {
             if (error) {
                 callback(error);
             } else {
-                let bytesUsed = info.total - info.free;
-                let used = parseInt( (bytesUsed * 100) / info.total );
+                let bytesUsed = result.used;
+                let used = parseInt( (bytesUsed * 100) / result.total );
                 let free = 100 - used;
                 callback(undefined,[
                     [used],
