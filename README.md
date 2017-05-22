@@ -1,4 +1,4 @@
-# Hey-Joe
+# Hey-Joe [![Build Status](https://travis-ci.org/lgapontes/hey-joe.svg?branch=master)](https://travis-ci.org/lgapontes/hey-joe)
 **Who loves, cares ... and keeps caring!**
 <br>
 **Pay attention**: we are in beta version. At this time (versions 0.1.x) we are checking the consistency of the monitoring variables (the black boxes of the image below) in different operating systems and the portability of the monitoring page between browsers.
@@ -116,7 +116,7 @@ As you will see, Hey-Joe background changes color according to the behavior of h
 * [JQuery](https://jquery.com/): no comments...
 * [lowdb](https://www.npmjs.com/package/lowdb): A NoSQL database that stores JSON's in a local file.
 * [cors](https://www.npmjs.com/package/cors): Enable CORS on Express.
-* [diskspace](https://www.npmjs.com/package/diskspace): This is a simple module for Node.js to check disk space usage in bytes on both *nix and Windows systems. Note: In the old versions (0.0.x) we used [diskusage] (https://www.npmjs.com/package/diskusage), which is also an excellent library. However, we were having problems installing [node-gyp] (https://www.npmjs.com/package/node-gyp), which is one of its dependencies. Installing [node-gyp] (https://www.npmjs.com/package/node-gyp) depends on administrator access on the computer and python configuration, a reality that is not always possible on NodeJS servers. If you have problems with [diskspace] (https://www.npmjs.com/package/diskspace), please open a Github issue that we will resolve.
+* [diskspace](https://www.npmjs.com/package/diskspace): This is a simple module for Node.js to check disk space usage in bytes on both *nix and Windows systems. Note: In the old versions (0.0.x) we used [diskusage](https://www.npmjs.com/package/diskusage), which is also an excellent library. However, we were having problems installing [node-gyp](https://www.npmjs.com/package/node-gyp), which is one of its dependencies. Installing [node-gyp](https://www.npmjs.com/package/node-gyp) depends on administrator access on the computer and python configuration, a reality that is not always possible on NodeJS servers. If you have problems with [diskspace](https://www.npmjs.com/package/diskspace), please open a Github issue that we will resolve.
 * [os-utils](https://www.npmjs.com/package/os-utils): Library for operating system data.
 * [Chartist.js](https://gionkunz.github.io/chartist-js/): Very light graphics library.
 * [moment.js](https://momentjs.com/): Date manipulation library.
