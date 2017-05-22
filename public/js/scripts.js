@@ -189,7 +189,11 @@ function createChart(variable,data) {
 };
 
 function updateChart(variable,data) {
-     variable.chart.update(data);
+      if (variable.chartType === '3bar') {
+          let high = data.series[2] + 300;
+          variable.chart.options.high = high;
+      }
+      variable.chart.update(data,variable.chart.options);
 };
 
 /* Ajax */

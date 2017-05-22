@@ -65,6 +65,7 @@ RepositoryRequests.prototype = {
         let timestamp = moment().format('YYYY-MM-DD_HH');
         if ( (requests !== undefined) && (requests.timestamp === timestamp) ) {
             if (addsOneMore) {
+                console.log(new Date() + ' ' + addsOneMore + ' ' + requests.count);
                 db.set('requestsPerHour[0].count', requests.count + 1).write();
             }
         } else {
