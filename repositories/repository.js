@@ -1,3 +1,5 @@
+"use strict";
+
 const low = require('lowdb');
 const db = low('node_modules/hey-joe/data/db.json');
 const properties  = require('../public/js/properties').config;

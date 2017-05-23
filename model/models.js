@@ -1,3 +1,5 @@
+"use strict";
+
 const path = require('path');
 const properties  = require('../public/js/properties').config;
 const Repository  = require('../repositories/repository').Repository;

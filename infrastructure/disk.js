@@ -1,3 +1,5 @@
+"use strict";
+
 const diskspace = require('diskspace');
 const os = require('os');
 

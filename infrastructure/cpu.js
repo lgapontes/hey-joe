@@ -1,3 +1,5 @@
+"use strict";
+
 const osUtils  = require('os-utils');
 const pusage = require('pidusage');
 
@@ -23,6 +25,7 @@ var CpuProcess = function() {
                 if (stat.cpu === undefined) {
                     callback('CPU status not found!');
                 } else {
+                    console.log(stat.cpu);
                     let cpuUsage = parseInt(stat.cpu)
                     let cpuFree = 100 - cpuUsage;
 
