@@ -122,7 +122,7 @@ As you will see, Hey-Joe background changes color according to the behavior of h
 * [moment.js](https://momentjs.com/): Date manipulation library.
 * [express-end](https://www.npmjs.com/package/express-end): Express middleware to emit end event on _res.end()_.
 * [pidusage](https://www.npmjs.com/package/pidusage): Cross-platform process cpu % and memory usage of a PID.
-* [windows-cpu](https://www.npmjs.com/package/windows-cpu): CPU monitoring utilities for Node.js apps on Windows. Foi utilizada para contornar um erro na leitura da CPU usada no sistema operacional Windows (fix issue [#25](https://github.com/lgapontes/hey-joe/issues/25)).
+* [windows-cpu](https://www.npmjs.com/package/windows-cpu): CPU monitoring utilities for Node.js apps on Windows. It was used to work around an error reading the CPU used in the Windows operating system (fix issue [#25](https://github.com/lgapontes/hey-joe/issues/25)).
 
 ### Cool Sites
 * [Many icons for web](https://icomoon.io/): Site where I got some of the icons used in this middleware.

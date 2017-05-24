@@ -42,6 +42,29 @@ function getMonitoringVariables() {
      });
 };
 
+function isIE() {
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE ");
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {        
+        return true;
+    }
+    return false;
+};
+
+function isEdge() {
+  if (/Edge/.test(navigator.userAgent)) {
+    return true;
+  }
+  return false;
+}
+
+function isChrome() {
+    if(/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())){
+      return true;
+    }
+    return false;
+};
+
 /* Charts*/
 function createChart(variable,data) {
      if (variable.chartType === "pie") {
@@ -107,12 +130,18 @@ function createChart(variable,data) {
               });
 
               let marginLeft = 10;
-              if(/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())){
+              let marginTop = 0;
+              if (isEdge()) {
+                marginTop = 14;
+                marginLeft = 10;
+              } else if(isChrome()){
                 marginLeft = 0;
+              } else if (isIE()) {
+                marginTop = 15;
               }
 
               barHorizontalCenter = data.x1 + (data.element.width() * .5) - marginLeft;
-              barVerticalCenter = data.y1 + (data.element.height() * -1) - 5;
+              barVerticalCenter = data.y1 + (data.element.height() * -1) - 5 + marginTop;
               value = data.element.attr('ct:value');
               if (value !== '0') {
                 label = new Chartist.Svg('text');
