@@ -1,3 +1,5 @@
+"use strict";
+
 const pusage = require('pidusage');
 const os = require('os');
 

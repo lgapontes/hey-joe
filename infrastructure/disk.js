@@ -1,3 +1,5 @@
+"use strict";
+
 const diskspace = require('diskspace');
 const os = require('os');
 
@@ -15,6 +17,12 @@ var Disk = function() {
                 let bytesUsed = result.used;
                 let used = parseInt( (bytesUsed * 100) / result.total );
                 let free = 100 - used;
+
+                if (used > 100) {
+                    used = 100;
+                    free = 0;
+                }
+
                 callback(undefined,[
                     [used],
                     [free]

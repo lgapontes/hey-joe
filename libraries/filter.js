@@ -1,3 +1,5 @@
+"use strict";
+
 const Requests  = require('../model/models').Requests;
 var requests = new Requests();
 

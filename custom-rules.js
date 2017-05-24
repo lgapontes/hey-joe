@@ -99,7 +99,7 @@ var customRules = {
                     That is, value[0][2] stores the value of the heap used and value[1][2] stores its total.
                 */
                 var used = ( value[0][2] / value[1][2] );
-                if ( used < 0.66 ) return "stable";
+                if ( used < 0.8 ) return "stable";
                 else if ( used < 0.9 ) return "unstable";
                 else return "dangerous";
             }

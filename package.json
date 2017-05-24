@@ -1,6 +1,6 @@
 {
   "name": "hey-joe",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Middleware for NodeJS monitoring",
   "main": "example.js",
   "directories": {
@@ -20,12 +20,13 @@
   },
   "homepage": "https://github.com/lgapontes/hey-joe#readme",
   "dependencies": {
-    "cors": ">=2.8.3",
-    "diskspace": "^2.0.0",
+    "cors": "~2.8.3",
+    "diskspace": "~2.0.0",
     "express": ">=4.15.2",
-    "express-end": "0.0.8",
+    "express-end": "~0.0.8",
     "lowdb": "~0.16.2",
     "os-utils": "~0.0.14",
-    "pidusage": "^1.1.4"
+    "pidusage": "~1.1.4",
+    "windows-cpu": "^0.1.4"
   }
 }
